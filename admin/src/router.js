@@ -12,9 +12,7 @@ import User_Service from "@/views/user_service"  // 用户前台开机服务
 import AllOrders from "@/views/allorders"  // 所有订单
 import AdminLikes from "@/views/adminlikes"  // 所有订单
 
-
 Vue.use(Router)
-
 const vueRouter = new Router({
   mode:"history",
   base: process.env.BASE_URL,

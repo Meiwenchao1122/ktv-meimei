@@ -1,6 +1,6 @@
 <template>
     <div class="notFound">
-        404页面
+        <h1>404</h1>
     </div>
 </template>
 <script>
@@ -11,5 +11,6 @@ export default {
 <style lang="less" scoped>
 .notFound{
     color: tomato;
+    text-align: center;
 }
 </style>

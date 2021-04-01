@@ -85,7 +85,8 @@
             </div>
         </Modal>
 
-        <audio autoplay id="musicPlayer" ref="musicPlayer" @ended="end" :src="'http://localhost:8633/api/music/nowmusic?id=' + currentSong._id" preload="auto"></audio>
+        <audio  autoplay id="musicPlayer" ref="musicPlayer" @ended="end" :src="'http://localhost:8633/api/music/nowmusic?id=' + currentSong._id" preload="auto"></audio>
+
     </div>
 </template>
 <script>
