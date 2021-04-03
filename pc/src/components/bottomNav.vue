@@ -5,23 +5,19 @@
             <div class="left">
                 <div class="home" @click="goHome">
                     <Icon type="ios-home" />
-                    <div>首页</div>
                 </div>
                 <div class="selected" @click="selected">
                     <Icon type="ios-musical-notes" />
-                    <div>已选</div>
                 </div>
                 <div class="addvolume" @click="addvolume">
                     <Icon type="ios-volume-up" />
-                    <div>音量+</div>
                 </div>
                 <div class="reducevolume" @click="reducevolume">
                     <Icon type="ios-volume-mute" />
-                    <div>音量-</div>
                 </div>
             </div>
             <div class="middle">
-                <img :src="currentPoster" alt="">
+                <img class="an" :src="currentPoster" alt="">
                 <div class="control-btn">
                     <div class="prev-btn" @click="playPrev">
                         <Icon type="ios-rewind" />
@@ -38,33 +34,27 @@
             <div class="right">
                 <div class="minormax" @click="minOrmax">
                     <Icon type="md-volume-off" />
-                    <div>静音</div>
                 </div>
                 <div class="single-cycle" @click="singleCycle">
                     <Icon type="md-sync" />
-                    <div>单曲</div>
                 </div>
                 <div class="order-cycle" @click="orderCycle">
                     <Icon type="md-swap" />
-                    <div>顺序</div>
                 </div>
                 <div class="login">
                     <span v-if="!isLogin" @click="loginModal = true">
                         <Icon type="md-log-in" />
-                        <div>登录</div>
                     </span>
                     <span v-if="isLogin" @click="logout">
                         <Icon type="md-log-out" />
-                        <div>下机</div>
                     </span>
                 </div>
             </div>
         </div>
-
+        <!-- 登录 -->
         <Modal v-model="loginModal" width="450">
             <p slot="header" style="color:#f60;text-align:center">
                 <Icon type="logo-pinterest" />
-                <span> 请登录</span>
             </p>
             <div v-if="loginModal">
                 <div class="ranklistbox" style="width:100%;padding:0px 2px;">
@@ -129,6 +119,7 @@ export default {
         }, 200)
     },
     created(){
+        // this.currentSong = JSON.parse(localStorage.currentSong)[0] ? JSON.parse(localStorage.currentSong)[0] : {_id:0};
     },
     methods:{
         end(){
@@ -463,26 +454,25 @@ export default {
 </script>
 <style lang="less" scoped>
 .topNav{
-    width: 100%;
-    height: 100%;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     perspective:1200px;
-
+    position: relative;
     .container{
         width: 80%;
         height: 100%;
         border-top-right-radius: 20px;
         border-top-left-radius: 20px;
         padding: 0px 40px;
-        background-image: linear-gradient(141deg,rgb(173, 38, 38) 0%,rgb(204, 30, 30) 75%);
+        background-color: rgba(0, 0, 0, .3);
         transform: rotateX(30deg);
         perspective:1200px;
         z-index: 2;
     }
     .inner-box{
-        height: 90%;
+        height: 70%;
         width: 75%;
         position: absolute;
         z-index: 4;
@@ -498,11 +488,11 @@ export default {
             .home,.selected,.addvolume,.reducevolume{
                 height: 100%;
                 flex: 1;
-                font-size: 50px;
+                font-size: 30px;
                 text-align: center;
                 color: rgb(196, 196, 26);
                 div{
-                    font-size: 20px;
+                    font-size: 10px;
                 }
                 cursor: pointer;
             }
@@ -516,30 +506,35 @@ export default {
         }
         .middle{
             flex: 1;
-            height: 100%;
-            width: 100%;
+            width: 60px;
             display: flex;
-            padding: 3px 50px;
             align-items: center;
             justify-content: center;
             position: relative;
+       
             img{
-                width: 100%;
-                height: 100%;
-                border-radius: 5px;
+                width: 65px;
+                height: 65px;
+                border-radius: 50%;
                 filter: blur(1px);
                 z-index: 2;
+                position: relative;
+                top: -20px;
+
             }
             &:hover{
                 .control-btn{
                     display: flex;
+                    // background-color: #eee;
+                    height: 55px;
+                  
                 }
             }
 
             .control-btn{
                 position: absolute;
-                width: 78%;
-                height: 100%;
+                width: 50%;
+                height: 50px;
                 z-index: 20;
                 background-color: rgba(0, 0, 0, .3);
                 display: none;
@@ -547,8 +542,8 @@ export default {
                 .prev-btn, .play, .next-btn{
                     flex: 1;
                     text-align: center;
-                    line-height: 110px;
-                    font-size: 60px;
+        
+                    font-size: 20px;
                     color: rgb(220, 225, 228);
                     cursor: pointer;
 
@@ -576,11 +571,11 @@ export default {
             .minormax,.single-cycle, .order-cycle, .login{
                 height: 100%;
                 flex: 1;
-                font-size: 50px;
+                font-size: 30px;
                 text-align: center;
-                color: rgb(35, 14, 153);
+                color: rgb(153, 14, 14);
                 div{
-                    font-size: 20px;
+                    font-size: 10px;
                 }
                 cursor: pointer;
             }
@@ -592,6 +587,18 @@ export default {
             }
         }
 
+    }
+    //图片不停旋转
+    @-webkit-keyframes rotation{
+        from {-webkit-transform: rotate(0deg);}
+        to {-webkit-transform: rotate(360deg);}
+    }
+    .an{
+        -webkit-transform: rotate(360deg);
+        animation: rotation 3s linear infinite;
+        -moz-animation: rotation 3s linear infinite;
+        -webkit-animation: rotation 3s linear infinite;
+        -o-animation: rotation 3s linear infinite;
     }
 }
 </style>
