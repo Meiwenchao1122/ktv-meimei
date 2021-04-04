@@ -4,7 +4,7 @@
         <div class="wrapper">
             <Row style="padding:20px 150px;color:#fff;font-size:18px;font-weight:700;">
                 <Col :span="3" style="cursor:default;">
-                    封面
+                    头像
                 </Col>
                 <Col :span="6" style="cursor:default;padding-right:20px;">
                     歌曲
@@ -33,7 +33,7 @@
                     被点{{item.playcount}}次
                 </Col>
                 <Col :span="3" @click.native="addSong(item)" style="text-align:center;cursor:pointer;">
-                    添加
+                    <a class="tainjia" href="javascript:void(0);">添加</a>
                 </Col>
             </Row>
             <!-- 分页 -->
