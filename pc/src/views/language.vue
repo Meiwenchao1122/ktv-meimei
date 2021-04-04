@@ -176,7 +176,7 @@ export default {
         z-index: 100;
         top: 0px;
         margin-left: 300px;
-        width: 1200px;
+        width: 1100px;
         height: 100%;
         overflow-y: scroll;
         padding: 0px 20px;

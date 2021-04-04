@@ -177,7 +177,7 @@ export default {
         position: absolute;
         z-index: 100;
         top: 0px;
-        width: 100%;
+        width: 1400px;
         height: 100%;
         overflow-y: scroll;
         padding: 50px 100px;

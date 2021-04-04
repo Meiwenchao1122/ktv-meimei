@@ -1,4 +1,5 @@
 <template>
+    <!-- 歌手点歌 -->
     <div class="language">
         <div class="leftBar">
             <Row @click.native="getArtistSongs(item, index)" v-for="(item, index) in artistList" class="selectLanguage" :key="index">
@@ -189,11 +190,11 @@ export default {
         z-index: 100;
         top: 0px;
         margin-left: 300px;
-        width: 1200px;
+        width: 1100px;
         height: 100%;
         overflow-y: scroll;
         padding: 0px 20px;
-
+        // background-color: #eee;
         .row-song{
             border-radius: 30px;
             &:hover{
