@@ -1,15 +1,12 @@
 <template>
     <div class="topNav">
-        <Col :span="3">
-            <div class="logo"></div>
-        </Col>
-        <Col :span="7">
+        <Col :span="8">
             <div class="playing-name" v-if="currentSong._id != 0 && isLogin">正在播放:{{currentSong.songName}}</div>
         </Col>
-        <Col :span="7">
+        <Col :span="8">
             <div class="next-name" v-if="currentSong._id != 0 && isLogin">下一首:{{nextSong.songName}}</div>
         </Col>
-        <Col :span="7" style="position:absolute;right:30px;">
+        <Col :span="4" style="position:absolute;right:30px;">
             <div class="selected-sum" v-if="allSongList.length && isLogin">已选:{{allSongList.length}}首</div>
         </Col>
     </div>
@@ -81,44 +78,35 @@ export default {
 .topNav{
     width: 100%;
     height: 100%;
+    line-height: 100%;
+    padding-left: 20px;
+    display: flex;
     background-image: linear-gradient(141deg,rgb(199, 56, 104) 20%,rgb(189, 67, 138) 50%, rgb(145, 42, 102) 75%);
-    .search-input{
-        height: 80px;
-        line-height: 75px;
-        text-align: center;
-        font-size: 22px;
-    }
     .selected-sum{
-        height: 80px;
-        line-height: 80px;
-        text-align: center;
+        height: 60px;
+        line-height: 60px;
+        text-align: left;
         font-size: 22px;
         color: aliceblue;
         font-weight: 700;
     }
     .next-name{
-        height: 80px;
-        line-height: 80px;
+        height: 60px;
+        line-height: 60px;
         text-align: center;
         font-size: 22px;
         color: aliceblue;
         font-weight: 700;
     }
     .playing-name{
-        height: 80px;
-        line-height: 80px;
-        text-align: center;
+        height: 60px;
+        line-height: 60px;
+        text-align: left;
         font-size: 22px;
         color: aliceblue;
         font-weight: 700;
     }
-    .logo{
-        width: 80px;
-        height: 80px;
-        background-image: url(../assets/image/website-logo.png);
-        background-size: 100% 100%;
-        margin-left: 80px;
-    }
+
 
 }
 </style>

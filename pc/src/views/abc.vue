@@ -170,7 +170,8 @@ export default {
         padding: 15px 250px;
         width: 100%;
         z-index: 999;
-        background-image: linear-gradient(141deg, #8B4726 0%, #8B2323 51%, #8B1A1A 75%);
+        // background-image: linear-gradient(141deg, #8B4726 0%, #8B2323 51%, #8B1A1A 75%);
+        background-color: rgb(17, 83, 72);
     }
 
     .wrapper{

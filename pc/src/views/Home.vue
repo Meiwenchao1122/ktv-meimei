@@ -3,6 +3,9 @@
   <el-header>
     <img src="../assets/image/logo.png" alt="">
     <h1>渔歌 MUSIC SYSTEM</h1>
+    <div class="header_right">
+      <topNav></topNav>   
+    </div>
   </el-header>
       <el-main>
           <router-view></router-view>
@@ -44,6 +47,10 @@ export default {
       line-height: 60px;
       padding-left: 20px;
       color: #fff;
+    }
+    .header_right{
+      flex: 1;
+      padding-left: 100px;
     }
   }
   .el-main{
