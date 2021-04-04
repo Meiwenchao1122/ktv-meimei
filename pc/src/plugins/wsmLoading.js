@@ -7,7 +7,7 @@ let wsmLoading = {
         loadingInstance = Loading.service({
             fullscreen: fullscreen ? fullscreen : true,
             text: notice ? notice : '正在加载...',
-            background: bgcolor ? bgcolor : "rgba(0,0,0,.7)",
+            background: bgcolor ? bgcolor : "rgba(0,0,0,.5)",
             lock: true,
         })
     },

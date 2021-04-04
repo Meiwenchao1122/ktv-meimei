@@ -1,24 +1,6 @@
 <template>
     <div class="index-view">
         <!-- 首页内容 -->
-        <!-- <div class="content">
-            <div class="left-content">
-                <div class="top1">
-                    <div class="left1">
-                        <div @click="goArtist"></div>
-                    </div>
-                    <div class="right1">
-                        <div class="top2">  
-                            <div class="left2"><div @click="goABC"></div></div>
-                            <div class="right2"><div @click="goLanguage"></div></div>
-                        </div>
-                        <div class="bottom2"><div @click="goStyle"></div></div>
-                    </div>
-                </div>
-                <div class="bottom1"><div @click="goKtvLikes"></div></div>
-            </div>
-            <div class="right-content" @click="goHot()"><div></div></div>
-        </div> -->
         <div class="content">
             <div class="left_content">
                 <img src="../assets/image/paihangbang.png" alt=""  @click="goHot()" >

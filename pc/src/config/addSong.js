@@ -13,7 +13,7 @@ function isExit(songInfo){
         item._id == songInfo._id ? isexit = true : "";
     })
     if(isexit){
-        MessageBox.confirm("歌曲已添加,请勿重复添加", "提示", {
+        MessageBox.confirm("请勿重复添加", "提示", {
             confirmButtonText:"确定",
             cancelButtonText:"取消",
             type:"warning"

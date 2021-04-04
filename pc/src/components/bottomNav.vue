@@ -51,10 +51,10 @@
                 </div>
             </div>
         </div>
-        <!-- 登录 -->
+        <!-- 登录弹窗 -->
         <Modal v-model="loginModal" width="450">
             <p slot="header" style="color:#f60;text-align:center">
-                <Icon type="logo-pinterest" />
+                <Icon type="md-bicycle" />
             </p>
             <div v-if="loginModal">
                 <div class="ranklistbox" style="width:100%;padding:0px 2px;">
