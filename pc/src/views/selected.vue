@@ -1,5 +1,6 @@
 <template>
     <div class="ktvlikes">
+        <h3>已选歌曲</h3>
         <div class="wrapper">
             <Row style="padding:20px 150px;color:#fff;font-size:18px;font-weight:700;">
                 <Col :span="3" style="cursor:default;">

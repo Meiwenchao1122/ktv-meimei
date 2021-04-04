@@ -1,5 +1,6 @@
 <template>
     <div class="language">
+        <h3>风格点歌</h3>
         <div class="leftBar">
             <Row @click.native="getStyleSongs(item, index)" v-for="(item, index) in languageOption" class="selectLanguage" :key="index">
                 {{item}}

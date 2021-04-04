@@ -21,25 +21,25 @@
         </div> -->
         <div class="content">
             <div class="left_content">
-                <img src="../assets/image/paihangbang.png" alt="">
+                <img src="../assets/image/paihangbang.png" alt=""  @click="goHot()" >
             </div>
             <div class="right_content">
                 <div class="r_top">
                     <div class="top">
-                        <img src="../assets/image/fengge.png" alt="">
+                        <img src="../assets/image/fengge.png" alt=""  @click="goStyle">
                     </div>
                     <div class="top">
-                        <img src="../assets/image/xitong.png" alt="">
+                        <img src="../assets/image/xitong.png" alt="" @click="goKtvLikes"  >
                     </div>
                     <div class="top">
-                        <img src="../assets/image/pingying.png" alt="">
+                        <img src="../assets/image/pingying.png" alt=""  @click="goABC">
                     </div>
                 </div>
                 <div class="r_bottom">
                    <div class="rb_left">
-                       <img src="../assets/image/yuzhong.png" alt=""></div> 
+                       <img src="../assets/image/yuzhong.png" alt="" @click="goLanguage" ></div> 
                    <div class="rb_right">
-                       <img src="../assets/image/gexing.png" alt="">
+                       <img src="../assets/image/gexing.png" alt=""  @click="goArtist">
                        </div> 
                 </div>
             </div>
@@ -99,7 +99,7 @@ export default {
 
     .content{
         width: 1100px;
-        height: 600px;
+        height: 500px;
         // border: 1px solid #000;
         display: flex;
         .left_content{
@@ -123,7 +123,7 @@ export default {
         .right_content{
             flex: 7;
             .r_top{
-                height: 300px;
+                height: 250px;
                 display: flex;
                 .top{
                     flex: 1;
@@ -143,7 +143,7 @@ export default {
                 }
             }
             .r_bottom{
-                height: 300px;
+                height: 250px;
                 display: flex;
                 .rb_left{
                     flex: 1;

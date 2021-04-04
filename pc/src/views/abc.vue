@@ -206,5 +206,6 @@ export default {
       border-radius: 3px;
       background: rgba(236, 233, 233, 0.1);
       -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+      
   }
 </style>

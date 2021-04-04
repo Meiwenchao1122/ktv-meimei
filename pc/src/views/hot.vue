@@ -1,6 +1,6 @@
 <template>
     <div class="hot">
-        <div class="bgl"></div>
+        <h3>排行榜</h3>
         <div class="wrapper">
             <Row style="padding:20px 150px;color:#fff;font-size:18px;font-weight:700;">
                 <Col :span="3" style="cursor:default;">
@@ -151,7 +151,7 @@ export default {
     .bgl{
         width: 100%;
         height: 100%;
-        background-image: url(../assets/image/bg1.jpg);
+        background-image: url('../assets/image/home_bg.jpg');
         background-size: 100% 100%;
         z-index: -2;
         filter: blur(3px);
