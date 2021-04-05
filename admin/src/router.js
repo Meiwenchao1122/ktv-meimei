@@ -6,11 +6,11 @@ import { LoadingBar } from 'view-design'
 import Login from "@/views/login"
 import Home from "@/views/Home"
 import NotFound from "@/views/404"  // 404页面
-import Index from "@/views/Index"
 import ManageMusic from "@/views/managemusic"   // 歌曲管理
 import User_Service from "@/views/user_service"  // 用户前台开机服务
 import AllOrders from "@/views/allorders"  // 所有订单
 import AdminLikes from "@/views/adminlikes"  // 系统推荐
+import DataStatistics from "@/views/dataStatistics"  // 数据统计展示
 
 Vue.use(Router)
 const vueRouter = new Router({
@@ -23,11 +23,11 @@ const vueRouter = new Router({
           component:Home,
           children:[
             {path:'/', redirect:"user_service"},
-            // {path:'index', name:"后台", component:Index},
             {path:'manage/music', name:"managemusic", component:ManageMusic, meta:{title:"歌曲管理"}},
             {path:'user_service', name:"user_service", component:User_Service, meta:{title:"分配账号密码"}},
             {path:'allorders', name:"allorders", component:AllOrders, meta:{title:"历史订单"}},
             {path:'music/likes', name:"adminlikes", component:AdminLikes, meta:{title:"系统推荐歌曲"}},
+            {path:'dataStatistics', name:"dataStatistics", component:DataStatistics, meta:{title:"数据统计展示"}},
           ]
       },
       {
@@ -35,7 +35,7 @@ const vueRouter = new Router({
         name:"login",
         component:Login,
         meta:{
-          title:"后台登录"
+          title:"音乐后台管理"
         }
       },
       {
@@ -73,7 +73,7 @@ vueRouter.afterEach((to, next) => {
     if(to.meta.title){
         document.title = to.meta.title;
     }else{
-        document.title = "后台管理系统";
+        document.title = "音乐后台管理系统";
     }
 })
 

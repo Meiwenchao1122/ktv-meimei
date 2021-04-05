@@ -1,5 +1,3 @@
-
-
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const adminModel = mongoose.Schema({
@@ -18,10 +16,12 @@ const adminModel = mongoose.Schema({
             return bcrypt.hashSync(val, 10)
         }
     },
+    // 身份 角色
     identity:{
         // require:true,
         type:String
     },
+    // 创建日期
     date:{
         require:true,
         type:String

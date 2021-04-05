@@ -29,7 +29,7 @@ router.post("/upload/music", async(req, res) => {
     await uploadMusic(req, res);
 })
 
-// 上传歌曲海报到服务器文件下
+// 上传歌曲头像到服务器文件下
 router.post("/upload/poster",  async (req, res) => {
     console.log("歌曲海报上传成功")
     await uploadImg(req, res);

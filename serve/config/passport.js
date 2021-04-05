@@ -8,7 +8,7 @@ const JwtStrategy = require('passport-jwt').Strategy,
 var opts = {}
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = Key;
-
+// 产生随机密码
 module.exports = passport => {
     passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
         User.findById(jwt_payload.id)

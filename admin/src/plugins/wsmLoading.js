@@ -1,6 +1,6 @@
 import { Loading } from 'element-ui';
 import Vue from 'vue';
-
+//加载动画 
 let loadingInstance;
 let wsmLoading = {
     start:(notice, bgcolor, fullscreen) => {

@@ -1,5 +1,7 @@
 const state = {
+    // 电子验证是否通过
     isAdminAuthorization:false,
+    // 管理员信息
     adminInfo:[]
 };
 const getters = {

@@ -22,7 +22,12 @@
         <i class="el-icon-tickets"></i>
         <span slot="title">订单管理</span>
       </el-menu-item>
-      <el-menu-item index="5" @click.native="logout" >
+      </el-menu-item>
+        <el-menu-item index="5"  @click.native="dataStatistics">
+        <i class="el-icon-tickets"></i>
+        <span slot="title">数据统计</span>
+      </el-menu-item>
+      <el-menu-item index="6" @click.native="logout" >
         <i class="el-icon-sort"></i>
         <span slot="title">退出登陆</span>
       </el-menu-item>
@@ -47,18 +52,27 @@ export default {
      
     },
     methods:{
+        // 登录
         goIndex(){
             this.$router.push("/admin/index");
         },
+        // 订单展示
         allorders(){
             this.$router.push("/admin/allorders");
         },
+        // 数据展示
+        dataStatistics(){
+            this.$router.push("/admin/dataStatistics");
+        },
+        // 新用户 分配账号密码
         goUser_service(){
             this.$router.push("/admin/user_service");
         },
+        // 歌曲管理
         goManageMusic(){
             this.$router.push("/admin/manage/music");
         },
+        //系统推荐
         goAdminLikes(){
             this.$router.push("/admin/music/likes");
         },

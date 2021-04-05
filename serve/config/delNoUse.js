@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Music = require("../dbModel/music");
-
+// 删除闲置的歌曲资源
 module.exports = {
     delAll:()=>{
         let musicFiles = fs.readdirSync(path.resolve(__dirname, "../static/music"));

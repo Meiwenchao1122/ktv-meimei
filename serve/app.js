@@ -15,6 +15,7 @@ require("./config/passport")(passport);  // 验证token
 
 // 中间件
 app.use(express.json());
+// --获取post 传参
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(passport.initialize());

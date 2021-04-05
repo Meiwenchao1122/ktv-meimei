@@ -1,4 +1,4 @@
-
+//产生随机账户
 module.exports = time => {   // 添加time参数来模仿时间戳,  防止缓存, 多次账号密码一致
     //  xxxx @ yyy .com
     const accoutList = ['a','b','c','d','e','f','g','h','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',1,2,3,4,5,6,7,8,9];

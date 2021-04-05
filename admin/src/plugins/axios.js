@@ -1,5 +1,5 @@
 "use strict";
-
+// 封装axios
 import Vue from 'vue';
 import axios from "axios";
 import router from "../router";
