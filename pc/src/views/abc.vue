@@ -147,7 +147,7 @@ export default {
             // 总页数
             this.paginations.total = this.allTableData.length;
             this.paginations.page_index = 1;
-            this.paginations.page_size = 8;
+            this.paginations.page_size = 5;
             // 设置默认分页数据
             this.allSongs = this.allTableData.filter((item, index) => {
                 return index < this.paginations.page_size;

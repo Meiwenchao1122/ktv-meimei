@@ -1,25 +1,6 @@
 <template>
     <!-- 订单管理 -->
     <div class="allorders">
-        <Row style="padding:20px 60px 20px 40px;">
-            <Col style="padding:0px 0px 0px 40px;" span="20">
-                <el-date-picker
-                v-model="selectDate"
-                size="small"
-                type="datetimerange"
-                :picker-options="pickerOptions"
-                range-separator="至"
-                start-placeholder="开始日期"
-                format="yyyy/MM/dd HH:mm:ss"
-                end-placeholder="结束日期"
-                align="right">
-                </el-date-picker>
-                <Button type="primary" v-if="selectDate" style="margin-left:10px;" @click="findorders">查询</Button>
-            </Col>
-            <Col :span="4" style="text-align:right;">
-                <Button type="primary" @click="getAllOrders">所有订单</Button>
-            </Col>
-        </Row>
         <!-- 订单数据表 -->
         <div style="width:100%;background-color:#f40;">
             <el-table
@@ -146,36 +127,9 @@ export default {
             paginations: {  // 分页属性
                 page_index: 1, // 当前位于哪页
                 total: 0, // 总数
-                page_size: 8, // 1页显示多少条
-                page_sizes: [8, 15, 20, 25], //每页显示多少条
+                page_size: 6, // 1页显示多少条
+                page_sizes: [6, 15, 20, 25], //每页显示多少条
                 layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
-            },
-            pickerOptions: {
-                shortcuts: [{
-                    text: '最近一周',
-                    onClick(picker) {
-                    const end = new Date();
-                    const start = new Date();
-                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-                    picker.$emit('pick', [start, end]);
-                    }
-                }, {
-                    text: '最近一个月',
-                    onClick(picker) {
-                    const end = new Date();
-                    const start = new Date();
-                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-                    picker.$emit('pick', [start, end]);
-                    }
-                }, {
-                    text: '最近三个月',
-                    onClick(picker) {
-                    const end = new Date();
-                    const start = new Date();
-                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-                    picker.$emit('pick', [start, end]);
-                    }
-                }]
             },
             delRow:""
         }
@@ -279,7 +233,7 @@ export default {
             // 总页数
             this.paginations.total = this.allTableData.length;
             this.paginations.page_index = 1;
-            this.paginations.page_size = 8;
+            this.paginations.page_size = 6;
             // 设置默认分页数据
             this.allorders = this.allTableData.filter((item, index) => {
                 return index < this.paginations.page_size;

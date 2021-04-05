@@ -147,8 +147,8 @@ export default {
             paginations: {  // 分页属性
                 page_index: 1, // 当前位于哪页
                 total: 0, // 总数
-                page_size: 8, // 1页显示多少条
-                page_sizes: [8, 15, 20, 25], //每页显示多少条
+                page_size: 5, // 1页显示多少条
+                page_sizes: [5, 15, 20, 25], //每页显示多少条
                 layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
             },
             delRow:""
@@ -257,7 +257,7 @@ export default {
             // 总页数
             this.paginations.total = this.allTableData.length;
             this.paginations.page_index = 1;
-            this.paginations.page_size = 8;
+            this.paginations.page_size = 5;
             // 设置默认分页数据
             this.adminLikes = this.allTableData.filter((item, index) => {
                 return index < this.paginations.page_size;

@@ -10,13 +10,13 @@
                         :value="item">
                     </el-option>
                 </el-select>
-                小时
+                小时 【单价：30元每小时】
             </el-form-item>
             <el-form-item label="总金额:">
                 <span>{{timeLong ? ruleForm.totalMoney : 0 }}元</span>
             </el-form-item>
             <el-form-item style="text-align:right;padding:20px 0px;">
-                <el-button type="primary" @click="submitForm('ruleForm')">开户</el-button>
+                <el-button type="primary" @click="submitForm('ruleForm')">分配账号密码</el-button>
             </el-form-item>
         </el-form>
         <Row class="order-current" v-if="card.flag">
@@ -178,8 +178,8 @@ export default {
 
     .order-current{
         position: fixed;
-        background-color: aqua;
         margin-top: 380px;
+        background: rgba(0, 0, 0, .1);
     }
     
 }

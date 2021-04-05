@@ -10,11 +10,11 @@
                 <Button type="primary" style="margin-left:5px;" @click="getAllSong()">所有歌曲</Button>
             </Col>
             <Col :span="4">
-                <Button type="success" style="margin-left:5px;" @click="toListen = true">试听歌曲</Button>
+                <Button type="success" style="margin-left:5px;" @click="toListen = true">在线试听</Button>
             </Col>
             <Col :span="12" style="text-align:right;">
                 <Avatar id="musicPoster" @click.native="operaMusic" class="listen-poster" v-if="toListenPoster" :src="toListenPoster" size="large" style="margin-right:40px;" />
-                <Button type="primary" @click="showAddSongBtn()">添加</Button>
+                <Button type="primary" @click="showAddSongBtn()">添加歌曲</Button>
             </Col>
         </Row>
         <!-- 歌曲数据表 -->
@@ -312,7 +312,8 @@
                             width="200"
                             label="试听">
                             <template slot-scope="scope">
-                                <span class="toListen-link" @click="listenMusic(scope.row)">播放</span>
+                                 <a class="tainjia" href="javascript:void(0);"  @click="listenMusic(scope.row)">在线试听</a>
+                                
                             </template>
                         </el-table-column>
                     </el-table>
@@ -357,8 +358,8 @@ export default {
             paginations: {  // 分页属性
                 page_index: 1, // 当前位于哪页
                 total: 0, // 总数
-                page_size: 8, // 1页显示多少条
-                page_sizes: [8, 15, 20, 25], //每页显示多少条
+                page_size: 5, // 1页显示多少条
+                page_sizes: [5, 15, 20, 25], //每页显示多少条
                 layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
             },
             delRow:"",
@@ -651,7 +652,7 @@ export default {
             // 总页数
             this.paginations.total = this.allTableData.length;
             this.paginations.page_index = 1;
-            this.paginations.page_size = 8;
+            this.paginations.page_size = 5;
             // 设置默认分页数据
             this.allSongs = this.allTableData.filter((item, index) => {
                 return index < this.paginations.page_size;
