@@ -2,7 +2,7 @@
   <el-container class="home">
   <el-header>
     <img src="../assets/image/logo.png" alt="">
-    <h1>渔歌 MUSIC SYSTEM</h1>
+    <h1>【渔歌】 MUSIC SYSTEM</h1>
     <div class="header_right">
       <topNav></topNav>   
     </div>

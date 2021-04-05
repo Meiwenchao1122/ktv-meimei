@@ -1,4 +1,5 @@
 <template>
+    <!-- 用户开机 -->
     <div class="user_service">
         <el-form :model="ruleForm" status-icon label-width="100px" class="ruleform" >
             <el-form-item label="时长:" required>

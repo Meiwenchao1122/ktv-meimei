@@ -1,4 +1,5 @@
 <template>
+    <!-- 歌曲管理 -->
     <div class="managemusic">
         <audio ref="musicPlayer" :src="toListenSrc" @ended="ended" autoplay preload="load"></audio>
         <Row style="padding:20px 60px 20px 40px;">

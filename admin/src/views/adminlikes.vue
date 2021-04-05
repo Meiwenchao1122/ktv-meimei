@@ -1,4 +1,5 @@
 <template>
+    <!-- 添加系统推荐-->
     <div class="adminlikes">
         <Row style="padding:20px 60px 20px 40px;">
             <Col :span="20">

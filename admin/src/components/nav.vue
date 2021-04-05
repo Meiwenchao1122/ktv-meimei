@@ -1,35 +1,37 @@
 <template>
     <div class="wsmnav">
-        <Row>
-            <Menu mode="horizontal" :theme="theme">
-                <Col :span="7">
-                    <div class="nav-logo">后台管理系统</div>
-                </Col>
-                <Col :span="13">
-                    <div class="current-time">{{nowTime}}</div>
-                </Col>
-                <MenuItem class="opera-btn" name="1">
-                    <Dropdown trigger="click">
-                        <a href="javascript:void(0)">
-                            <Avatar :src="avatar" />
-                            <Icon type="ios-arrow-down" style="margin-left:5px;color:#bbb;"></Icon>
-                        </a>
-                        <DropdownMenu slot="list">
-                            <DropdownItem @click.native="goIndex">你好,{{adminInfo.username}}</DropdownItem>
-                            <DropdownItem @click.native="goManageMusic">歌曲管理</DropdownItem>
-                            <DropdownItem @click.native="goAdminLikes">推荐歌曲</DropdownItem>
-                            <DropdownItem @click.native="goUser_service">开机服务</DropdownItem>
-                            <DropdownItem @click.native="allorders">订单查询</DropdownItem>
-                            <DropdownItem @click.native="logout">退出登录</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                </MenuItem>
-            </Menu>
-        </Row>
+            <el-menu
+      default-active="1"
+         background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+      <el-menu-item index="1" @click.native="goUser_service">
+        <i class="el-icon-setting"></i>
+        <span slot="title">分配账号密码</span>
+      </el-menu-item>
+      
+      <el-menu-item index="2" @click.native="goAdminLikes">
+        <i class="el-icon-star-off"></i>
+        <span slot="title">系统推荐歌曲</span>
+      </el-menu-item>
+      <el-menu-item index="3" @click.native="goManageMusic">
+        <i class="el-icon-menu "></i>
+        <span slot="title">歌曲管理</span>
+      </el-menu-item>
+        <el-menu-item index="4"  @click.native="allorders">
+        <i class="el-icon-tickets"></i>
+        <span slot="title">订单查询</span>
+      </el-menu-item>
+      <el-menu-item index="5" @click.native="logout" >
+        <i class="el-icon-sort"></i>
+        <span slot="title">退出登陆</span>
+      </el-menu-item>
+    </el-menu>
+      
     </div>
 </template>
 <script>
-import "@/plugins/Date"
+// import "@/plugins/Date"
 export default {
     name:"wsmnav",
     data(){
@@ -42,7 +44,7 @@ export default {
     },
     created(){
         this.getAdminInfo();
-        this.currentTime();
+     
     },
     methods:{
         goIndex(){
@@ -60,15 +62,10 @@ export default {
         goAdminLikes(){
             this.$router.push("/admin/music/likes");
         },
-        // 刷新时间
-        currentTime(){
-            setInterval(() => {
-                this.nowTime = new Date().format("yyyy/MM/dd HH:mm:ss")
-            }, 1000)
-        },
+        
         // 退出
         logout(){
-            this.$confirm('确定退出吗？每一片贫瘠的土地都需要坚定的挖掘者！', '退出提示', {
+            this.$confirm('确定退出吗？', '退出提示', {
                 confirmButtonText: '退出',
                 cancelButtonText: '取消',
                 type: 'warning'
@@ -87,24 +84,12 @@ export default {
 </script>
 <style lang="less" scoped>
 .wsmnav{
-    .opera-btn{
-        position: absolute;
-        right:120px;
-    }
-    .current-time{
-        font-size: 16px;
-        color: rgb(173, 166, 166);
-        text-align: right;
-    }
-
-    .nav-logo{
-        height: 60px;
-        line-height: 60px;
-        color: rgb(192, 190, 190);
-        font-size: 40px;
-        width: 100%;
-        text-align: center;
-        font-family: "隶书";
+    width: 100%;
+    height: 100%;
+    background-color: #545C64;
+    .el-menu{
+        background-color: #545C64 !important;
+        birder-right:none;
     }
 }
 </style>
