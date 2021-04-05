@@ -3,7 +3,7 @@
     <div class="allorders">
         <!-- 订单数据表 -->
         <div style="width:100%;background-color:#f40;">
-            <el-table
+             <el-table
                 :data="allorders"
                 class="order-table"
                 style="width: 100%"
@@ -73,7 +73,8 @@
                         ></el-button>
                     </template>
                 </el-table-column>
-            </el-table>
+            </el-table> 
+            
         </div>
         <!-- 分页 -->
         <Row>
@@ -153,7 +154,7 @@ export default {
                                         this.$nextTick(() => {
                                             this.getAllOrders();
                                             wsmLoading.end();
-                                            this.$Message.success(res.data.result);
+                                            this.$Message.success("删除成功");
                                         })
                                     })
                         }
@@ -180,6 +181,7 @@ export default {
                         this.setPaginations();
                     })
         },
+        // 删除确定框
         onDeleteSong(order){
             this.$confirm("你确定要删除这条订单信息吗?不可恢复是否继续?", '提示', {
                 confirmButtonText:"确定",
@@ -248,4 +250,5 @@ export default {
     height: 100%;
     padding: 20px 60px;
 }
+
 </style>

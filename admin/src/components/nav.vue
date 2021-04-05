@@ -20,7 +20,7 @@
       </el-menu-item>
         <el-menu-item index="4"  @click.native="allorders">
         <i class="el-icon-tickets"></i>
-        <span slot="title">订单查询</span>
+        <span slot="title">订单管理</span>
       </el-menu-item>
       <el-menu-item index="5" @click.native="logout" >
         <i class="el-icon-sort"></i>
