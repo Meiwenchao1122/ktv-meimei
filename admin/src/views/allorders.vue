@@ -8,10 +8,11 @@
                 class="order-table"
                 style="width: 100%"
                 border
+                stripe
             >
                 <el-table-column
                     type="index"
-                    label="序号"
+                    label="#"
                     align="center"
                     width="60">
                 </el-table-column>
@@ -19,36 +20,36 @@
                     prop="order_id"
                     label="订单编号"
                     align="center"
-                    width="250">
+                    width="180">
                 </el-table-column>
                 <el-table-column
                     label="账号"
                     prop="account"
                     align="center"
-                    width="200">
+                    width="180">
                 </el-table-column>
                 <el-table-column
                     prop="publicpwd"
                     label="明文密码"
                     align="center"
-                    width="150">
+                    width="80">
                 </el-table-column>
                 <el-table-column
                     prop="money"
                     align="center"
-                    width="100"
+                    width="60"
                     label="金额">
                 </el-table-column>
                 <el-table-column
                     align="center"
                     prop="startTime"
-                    width="200"
+                    width="180"
                     label="开始时间">
                 </el-table-column>
                 <el-table-column
                     align="center"
                     prop="endTime"
-                    width="200"
+                    width="180"
                     label="结束时间">
                 </el-table-column>
                 <el-table-column

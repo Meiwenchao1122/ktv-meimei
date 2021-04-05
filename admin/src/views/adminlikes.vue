@@ -16,6 +16,7 @@
                 class="song-table"
                 style="width: 100%"
                 border
+                stripe
             >
                 <el-table-column
                     type="index"
