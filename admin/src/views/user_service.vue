@@ -10,6 +10,7 @@
                         :value="item">
                     </el-option>
                 </el-select>
+                小时
             </el-form-item>
             <el-form-item label="总金额:">
                 <span>{{timeLong ? ruleForm.totalMoney : 0 }}元</span>
@@ -155,12 +156,14 @@ export default {
 .user_service{
     width: 100%;
     height: 100%;
-    background-image: url(../assets/image/user_service-bg.jpg);
+    background-image: url(../assets/image/bg1.jpg);
     background-size: 100% 100%;
     display: flex;
     align-content: center;
     justify-content: center;
-
+    .el-select{
+        width: 100px;
+    }
     .ruleform{
         margin-top: 100px;
         border-radius: 10px;

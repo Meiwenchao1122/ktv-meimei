@@ -2,24 +2,24 @@
     <!-- 登录 -->
     <div class="login">
         <div class="login-title">
-            后台管理系统
+            管理员登录
         </div>
         <div class="form-box">
             <el-form class="login-form" label-position="top" size="small" :inline-message="inlinemessage" :model="loginForm" :rules="loginRule" ref="loginForm" label-width="100px">
-                <el-form-item label="Email address" prop="email">
+                <el-form-item label="邮箱" prop="email">
                     <el-input type="text" v-model="loginForm.email" placeholder="请输入邮箱"></el-input>
                 </el-form-item>
-                <el-form-item label="Password" prop="password">
+                <el-form-item label="密码" prop="password">
                     <el-input type="password" @keypress.enter.native="submitForm('loginForm')" show-password v-model="loginForm.password" placeholder="请输入密码"></el-input>
                 </el-form-item>
-                <el-form-item label="Security Code" prop="inputCaptcha">
+                <el-form-item label="验证码" prop="inputCaptcha">
                     <div class="yzm">
                         <el-input style="width:150px;" v-model="inputCaptcha" placeholder="验证码"></el-input>
                         <img width="80" style="background:#EEE9E9;margin-left:30px;" ref="captcha" height="32" src="http://localhost:8633/api/safecode" @click="refreshCaptcha">
                     </div>
                 </el-form-item>
                 <el-form-item>
-                    <el-button class="login-btn" type="primary" @click="submitForm('loginForm')">Sign in</el-button>
+                    <el-button class="login-btn" type="primary" @click="submitForm('loginForm')">确定登录</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -127,7 +127,7 @@ export default {
     cursor: default;
     padding: 40px 0px;
     color:red;
-    background-image: url(../assets/image/login-bg.jpg);
+    background-image: url(../assets/image/bg2.jpg);
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
