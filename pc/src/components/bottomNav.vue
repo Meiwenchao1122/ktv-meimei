@@ -150,10 +150,12 @@ export default {
                         const obj = [song];
                         localStorage.setItem("currentSong", JSON.stringify(obj))
                         this.currentSong = song;
+                        this.$Message.success("上一曲")
                         setTimeout(() => {
                             $("#ios-play").fadeIn();
                             $("#ios-pause").fadeOut();
                             this.$refs.musicPlayer.pause();
+                            
                         }, 10)
                     }
                 }else{
@@ -170,6 +172,7 @@ export default {
                         const obj = [song];
                         localStorage.setItem("currentSong", JSON.stringify(obj))
                         this.currentSong = song;
+                        this.$Message.success("上一曲")
                         setTimeout(() => {
                             $("#ios-play").fadeOut();
                             $("#ios-pause").fadeIn();
@@ -243,7 +246,7 @@ export default {
                         const obj = [song];
                         localStorage.setItem("currentSong", JSON.stringify(obj))
                         this.currentSong = song;
-                        
+                        this.$Message.success("下一曲")
                         setTimeout(() => {
                             $("#ios-play").fadeIn();
                             $("#ios-pause").fadeOut();
@@ -264,7 +267,7 @@ export default {
                         const obj = [song];
                         localStorage.setItem("currentSong", JSON.stringify(obj))
                         this.currentSong = song;
-                        
+                        this.$Message.success("下一曲")
                         setTimeout(() => {
                             $("#ios-play").fadeOut();
                             $("#ios-pause").fadeIn();
@@ -283,7 +286,9 @@ export default {
                 $(".single-cycle").css("color","rgb(219, 217, 217)");
                 this.$store.setPlayModle = 1;
                 nextSong();
+                this.$Message.success("顺序播放")
                 localStorage.setItem("playModle", 1);
+
             }else{
                 this.loginModal = true;
             }
@@ -295,6 +300,7 @@ export default {
                 $(".order-cycle").css("color","rgb(219, 217, 217)");
                 this.$store.setPlayModle = -1;
                 nextSong();
+                this.$Message.success("单曲循环")
                 localStorage.setItem("playModle", -1);
             }else{
                 this.loginModal = true;
@@ -306,9 +312,11 @@ export default {
                 if(this.$refs.musicPlayer.volume == 0){
                     this.$refs.musicPlayer.volume = 1;
                     $(".minormax").css("color","rgb(219, 217, 217)")
+                    this.$Message.success("取消静音")
                 }else{
                     this.$refs.musicPlayer.volume = 0
                     $(".minormax").css("color","rgb(196, 196, 26)")
+                    this.$Message.success("静音")
                 }
             }else{
                 this.loginModal = true;
@@ -318,6 +326,7 @@ export default {
         reducevolume(){
             if(hasLogin()){
                 $(".minormax").css("color","rgb(219, 217, 217)")
+                this.$Message.success("音量-")
                 if(this.$refs.musicPlayer.volume > 0.05){
                     this.$refs.musicPlayer.volume -= 0.05;
                 }else{
@@ -331,6 +340,7 @@ export default {
         addvolume(){
             if(hasLogin()){
                 $(".minormax").css("color","rgb(219, 217, 217)")
+                this.$Message.success("音量+")
                 if(this.$refs.musicPlayer.volume < 0.95){
                     this.$refs.musicPlayer.volume += 0.05;
                 }else{
@@ -347,6 +357,7 @@ export default {
         // 去已选界面
         selected(){
             if(hasLogin()){
+                this.$Message.success("已选歌曲")
                 this.$router.push("/home/selected");
             }else{
                 this.loginModal = true;

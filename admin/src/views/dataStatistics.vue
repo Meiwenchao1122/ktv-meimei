@@ -1,4 +1,5 @@
 <template>
+<!-- 数据统计 -->
  <div class="data">
      <div class="top">
          <div class="top_left">1</div>
@@ -11,7 +12,6 @@
      </div>
  </div>
 </template>
-
 <script>
 export default {
     name:"dataStatistics",
@@ -46,6 +46,8 @@ export default {
 
 <style lang='less'>
 .data{
+    background: url('../assets/image/bg3.jpg') no-repeat fixed;
+    background-size: cover;;
     .top{
         display: flex;
         height: 350px;
@@ -58,7 +60,7 @@ export default {
     }
     .bottom{
         display: flex;
-        height: 200px;
+        height: 270px;
         .bottom_left{
             flex: 1;
         }
