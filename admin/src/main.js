@@ -18,7 +18,6 @@ import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 Vue.use(ViewUI);
 
-
 new Vue({
   router,
   store,
