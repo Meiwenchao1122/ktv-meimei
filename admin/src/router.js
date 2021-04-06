@@ -12,6 +12,14 @@ import AllOrders from "@/views/allorders"  // 所有订单
 import AdminLikes from "@/views/adminlikes"  // 系统推荐
 import DataStatistics from "@/views/dataStatistics"  // 数据统计展示
 
+//解决重复点击 报错
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
+
+
 Vue.use(Router)
 const vueRouter = new Router({
   mode:"history",

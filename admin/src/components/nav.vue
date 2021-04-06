@@ -24,7 +24,7 @@
       </el-menu-item>
       </el-menu-item>
         <el-menu-item index="5"  @click.native="dataStatistics">
-        <i class="el-icon-tickets"></i>
+        <i class="el-icon-view"></i>
         <span slot="title">数据统计</span>
       </el-menu-item>
       <el-menu-item index="6" @click.native="logout" >

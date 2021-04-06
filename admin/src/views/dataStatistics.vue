@@ -25,7 +25,11 @@ export default {
   mounted(){
     this.drawLine();
   },
+  created(){
+   
+  },
   methods: {
+    //   图1 数据渲染
     drawLine(){
         // 基于准备好的dom，初始化echarts实例
          let myChart = echarts.init(document.getElementById('myChart')); ;
@@ -43,7 +47,32 @@ export default {
                 data: [5, 20, 36, 10, 10, 20]
             }]
         });
-    }
+    },
+     // 获取所有歌手
+        // getAllArtist(){
+        //     this.$axios.post("http://localhost:8633/api/music/all")
+        //             .then(res => {
+        //                 this.artistSongs = res.data;
+        //                 this.allTableData = res.data;
+        //                 this.setPaginations();
+        //                 let result = [res.data[0].artist];
+        //                 res.data.forEach(item => {
+        //                     let flag = true;
+        //                     result.forEach(artist => {
+        //                         if(artist == item.artist){
+        //                             flag = false;
+        //                         }
+        //                     })
+        //                     if(flag){
+        //                         result.push(item.artist)
+        //                     }
+        //                 })
+        //                 this.artistList = result;
+        //             })
+        // },
+    // 获取所有歌曲信息
+    // 获取订单信息
+    // 获取收藏歌曲
   }
 }
 </script>
