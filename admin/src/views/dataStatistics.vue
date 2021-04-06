@@ -3,7 +3,8 @@
  <div class="data">
      <div class="top">
          <div class="top_left" >
-            <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
+             <h3>歌手拥有歌曲数量统计:</h3>
+            <div id="myChart" :style="{width: '600px', height: '300px'}"></div>
          </div>
          <div class="top_right">2</div>
      </div>
@@ -17,79 +18,106 @@
 import * as echarts from 'echarts' 
 export default {
     name:"dataStatistics",
-    data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-  mounted(){
-    this.drawLine();
-  },
-  created(){
-   
-  },
-  methods: {
-    //   图1 数据渲染
-    drawLine(){
-        // 基于准备好的dom，初始化echarts实例
-         let myChart = echarts.init(document.getElementById('myChart')); ;
-        // 绘制图表
-        myChart.setOption({
-            title: { text: '在Vue中使用echarts' },
-            tooltip: {},
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+    data(){
+          return{
+                //歌曲以及对应数量  
+              labList:[]
+          }
+        },
+        mounted() {
+            this.initChart();
+        },
+        methods:{
+            initChart() {
+                this.char=echarts.init(document.getElementById("myChart"));
+                this.$axios.get('http://localhost:8633/api/music/all')
+                    .then((res)=>{
+                        console.log('访问后台');
+                        this.labList=res.data;
+                        // 格式化数据为angle图标 需要的数据--此结构为固定结构
+                        let list = [
+                            {
+                                "name":'邓紫棋',
+                                "value":0,
+                            },
+                            {
+                                "name":'Taylor Swift',
+                                "value":0,
+                            },
+                            {
+                                "name":'林俊杰',
+                                "value":0,
+                            },
+                            {
+                                "name":'刘德华',
+                                "value":0,
+                            },
+                            {
+                                "name":'毛不易',
+                                "value":0,
+                            },
+                            {
+                                "name":'周杰伦',
+                                "value":0,
+                            },
+                            {
+                                "name":'张学友',
+                                "value":0,
+                            },
+                            {
+                                "name":'王赫野',
+                                "value":0,
+                            },
+                        ]
+               
+                        for (let i = 0; i < this.labList.length; i++) {
+                            const elementI = this.labList[i].artist;
+                        
+                            for (let k = 0; k < list.length; k++) {
+                                const elementK = list[k];
+                                
+                                if(elementK.name == elementI){
+                                   list[k].value++
+                                   
+                                }
+                            }
+                        }
+                        // 格式化数据为angle图标 需要的数据
+                        this.char.setOption({
+                        roseType: 'angle',
+                        tooltip:{},
+                        series:[
+                                {
+                                    name: '歌手歌曲量统计',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    data:list,
+                                    
+                                }
+                            ]
+                        })
+                    });
+
             },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        });
-    },
-     // 获取所有歌手
-        // getAllArtist(){
-        //     this.$axios.post("http://localhost:8633/api/music/all")
-        //             .then(res => {
-        //                 this.artistSongs = res.data;
-        //                 this.allTableData = res.data;
-        //                 this.setPaginations();
-        //                 let result = [res.data[0].artist];
-        //                 res.data.forEach(item => {
-        //                     let flag = true;
-        //                     result.forEach(artist => {
-        //                         if(artist == item.artist){
-        //                             flag = false;
-        //                         }
-        //                     })
-        //                     if(flag){
-        //                         result.push(item.artist)
-        //                     }
-        //                 })
-        //                 this.artistList = result;
-        //             })
-        // },
-    // 获取所有歌曲信息
-    // 获取订单信息
-    // 获取收藏歌曲
-  }
-}
+        }
+} 
 </script>
 
 <style lang='less'>
 .data{
-    // background: url('../assets/image/bg3.jpg') no-repeat fixed;
-    // background-size: cover;
+
+    background-color: #fff;
     .top{
         display: flex;
         height: 350px;
         .top_left{
             flex: 1;
+            padding: 10px;
         
         }
         .top_right{
             flex: 1;
+             padding: 10px;
         }
     }
     .bottom{
@@ -97,9 +125,11 @@ export default {
         height: 270px;
         .bottom_left{
             flex: 1;
+             padding: 10px;
         }
         .bottom_right{
             flex: 1;
+             padding: 10px;
         }
     }
 }
