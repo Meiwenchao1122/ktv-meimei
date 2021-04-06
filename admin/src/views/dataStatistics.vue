@@ -4,9 +4,12 @@
      <div class="top">
          <div class="top_left" >
              <h3>歌手拥有歌曲数量统计:</h3>
-            <div id="myChart" :style="{width: '600px', height: '300px'}"></div>
+            <div id="musicNumber" :style="{width: '600px', height: '300px'}"></div>
          </div>
-         <div class="top_right">2</div>
+         <div class="top_right">     
+             <h3>歌曲风格数量统计:</h3>
+            <div id="musicStyle" :style="{width: '600px', height: '300px'}"></div>
+         </div>
      </div>
      <div class="bottom">
          <div class="bottom_left">3</div>
@@ -21,18 +24,23 @@ export default {
     data(){
           return{
                 //歌曲以及对应数量  
-              labList:[]
+              labList:[],
+              styleList:[]
           }
         },
         mounted() {
-            this.initChart();
+            //右上图
+            this.getMusicStyle()
+            //左上图
+            this.getMusicNumber();
         },
         methods:{
-            initChart() {
-                this.char=echarts.init(document.getElementById("myChart"));
+            //左上 歌手拥有歌曲数量统计
+            getMusicNumber() {
+                this.char0=echarts.init(document.getElementById("musicNumber"));
                 this.$axios.get('http://localhost:8633/api/music/all')
                     .then((res)=>{
-                        console.log('访问后台');
+                        console.log('访问后台1');
                         this.labList=res.data;
                         // 格式化数据为angle图标 需要的数据--此结构为固定结构
                         let list = [
@@ -83,7 +91,7 @@ export default {
                             }
                         }
                         // 格式化数据为angle图标 需要的数据
-                        this.char.setOption({
+                        this.char0.setOption({
                         roseType: 'angle',
                         tooltip:{},
                         series:[
@@ -97,7 +105,44 @@ export default {
                             ]
                         })
                     });
-
+            },
+            //右上 风格歌曲数量统计
+            getMusicStyle() {
+                this.char1=echarts.init(document.getElementById("musicStyle"));
+                this.$axios.get('http://localhost:8633/api/music/all')
+                    .then((res)=>{
+                        console.log('访问后台1');
+                        this.styleList=res.data;
+                        // 格式化数据为angle图标 需要的数据--此结构为固定结构
+                        let list = ['传统歌曲','民歌歌曲','摇滚歌曲','伴奏歌曲','古风歌曲']
+                        let countArr = [0,0,0,0,0]
+                        for (let i = 0; i < this.styleList.length; i++) {
+                            const element = this.styleList[i].style;
+                     
+                             switch (element) {
+                                case '传统': countArr[0]++; break;
+                                case '民歌': countArr[1]++; break;
+                                case "摇滚": countArr[2]++; break;
+                                case "伴奏": countArr[3]++; break;
+                                case "古风": countArr[4]++; break;
+                            }
+                        }
+                     
+                        // 格式化数据为angle图标 需要的数据
+                        this.char1.setOption({
+                            title: { text: '' },
+                            tooltip: {},
+                            xAxis: {
+                                data: list
+                            },
+                            yAxis: {},
+                            series: [{
+                                name: '数量',
+                                type: 'bar',
+                                data: countArr
+                            }]
+                        })
+                    });
             },
         }
 } 
