@@ -140,6 +140,7 @@ export default {
         this.getAllOrders();
     },
     methods:{
+        //删除订单
         checkPwd(){
             if(this.inputPassword.trim().length){
                 this.isCheckPassword = false;
@@ -172,6 +173,7 @@ export default {
                 })
             }
         },
+        //获取所有订单
         getAllOrders(){
             this.selectDate = '';
             this.$axios.get("http://localhost:8633/api/admin/orders/all")

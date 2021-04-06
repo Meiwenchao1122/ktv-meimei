@@ -4,16 +4,19 @@
      <div class="top">
          <div class="top_left" >
              <h3>歌手拥有歌曲数量统计:</h3>
-            <div id="musicNumber" :style="{width: '600px', height: '300px'}"></div>
+            <div id="musicNumber" :style="{width: '600px', height: '250px'}"></div>
          </div>
          <div class="top_right">     
              <h3>歌曲风格数量统计:</h3>
-            <div id="musicStyle" :style="{width: '600px', height: '300px'}"></div>
+            <div id="musicStyle" :style="{width: '600px', height: '250px'}"></div>
          </div>
      </div>
      <div class="bottom">
-         <div class="bottom_left">3</div>
-         <div class="bottom_right">4</div>
+         <div class="bottom_left">
+             <h3>开户时间段统计:</h3>(时间段的生意最好)
+            <div id="timeOrders" :style="{width: '1200px', height: '250px'}"></div>
+         </div>
+       
      </div>
  </div>
 </template>
@@ -25,14 +28,19 @@ export default {
           return{
                 //歌曲以及对应数量  
               labList:[],
-              styleList:[]
+              styleList:[],
+            //   订单
+            allorders:[]
           }
         },
         mounted() {
             //右上图
-            this.getMusicStyle()
+            this.getMusicStyle();
             //左上图
             this.getMusicNumber();
+            //下图
+            this.getOrders();
+      
         },
         methods:{
             //左上 歌手拥有歌曲数量统计
@@ -144,6 +152,96 @@ export default {
                         })
                     });
             },
+            getOrders(){
+                 this.char2=echarts.init(document.getElementById("timeOrders"));
+                this.$axios.get("http://localhost:8633/api/admin/orders/all")
+                    .then(res => {
+                        this.allorders = res.data;
+                        //图表需要的参数模板
+                         let time =[
+                            '0时',
+                            '01时',
+                            '02时',
+                            '03时',
+                            '04时',
+                            '05时',
+                            '06时',
+                            '07时',
+                            '08时',
+                            '09时',
+                            '10时',
+                            '11时',
+                            '12时',
+                            '13时',
+                            '14时',
+                            '15时',
+                            '16时',
+                            '17时',
+                            '18时',
+                            '19时',
+                            '20时',
+                            '21时',
+                            '22时',
+                            '23时',
+                        ];
+                        let countArr=[
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                        for (let i = 0; i < this.allorders.length; i++) {
+                        
+                            let element = this.allorders[i].startTime;
+                            // 截取出时间(小时)
+                            element = element.substr(11,2)
+                            // 将09 --> 9      01 --> 1, 后期好对比
+                            if(element[0]=='0'){
+                                element = element.substr(1,1)
+                            }
+                            // console.log('element :>> ', element);
+                            countArr[parseInt(element)]++
+                            
+                        }
+                        //console.log('countArr :>> ', countArr);
+                         this.char2.setOption({
+                            xAxis: {
+                                type: 'category',
+                                data: time
+                            },
+                            
+                            yAxis: {
+                                type: 'value'
+                            },
+                            series: [{
+                                data: countArr,
+                                type: 'line',
+                                smooth: true
+                            }]
+                        })
+                 })
+            }
+           
         }
 } 
 </script>
