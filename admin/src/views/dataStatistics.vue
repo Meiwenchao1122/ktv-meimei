@@ -13,8 +13,8 @@
      </div>
      <div class="bottom">
          <div class="bottom_left">
-             <h3>开户时间段统计:</h3>(时间段的生意最好)
-            <div id="timeOrders" :style="{width: '1200px', height: '250px'}"></div>
+             <h3>开户时间段统计:</h3><span>测评哪个时间段的生意最好</span>
+            <div id="timeOrders" :style="{width: '1200px', height: '240px'}"></div>
          </div>
        
      </div>

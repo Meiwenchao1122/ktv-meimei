@@ -201,24 +201,28 @@ export default {
                     localStorage.setItem("currentSong", JSON.stringify(obj))
                     this.currentSong = song;
                     if(localStorage.play == "0"){
+                        this.$Message.success("播放")
                         this.$refs.musicPlayer.play();
                         $("#ios-play").fadeOut();
                         $("#ios-pause").fadeIn();
                         localStorage.play = 1;
                     }else{
                         this.$refs.musicPlayer.pause();
+                        this.$Message.success("暂停")
                         $("#ios-play").fadeIn();
                         $("#ios-pause").fadeOut();
                         localStorage.play = 0;
                     }
                 }else{
                     if(this.$refs.musicPlayer.paused){
+                        this.$Message.success("播放")
                         this.$refs.musicPlayer.play();
                         $("#ios-play").fadeOut();
                         $("#ios-pause").fadeIn();
                         localStorage.play = 1;
                     }else{
                         this.$refs.musicPlayer.pause();
+                        this.$Message.success("暂停")
                         $("#ios-play").fadeIn();
                         $("#ios-pause").fadeOut();
                         localStorage.play = 0;
