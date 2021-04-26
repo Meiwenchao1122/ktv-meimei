@@ -6,40 +6,41 @@ const mongoose = require("mongoose");
 
 const musicModel = mongoose.Schema({
     //歌曲名
-    songName:{
-        require:true,
-        type:String
+    songName: {
+        require: true,
+        type: String
     },
     //演唱歌手 
-    artist:{
-        require:true,
-        type:String
+    artist: {
+        require: true,
+        type: String
     },
     //海报 - 歌曲头像
-    poster:{
-        require:true,
-        type:String
+    poster: {
+        require: true,
+        type: String
     },
     // 歌曲路径
-    src:{
-        require:true,
-        type:String
+    src: {
+        require: true,
+        type: String
     },
     // 属于什么语种
-    language:{
-        type:String
+    language: {
+        type: String
     },
     // 属于什么风格
-    style:{ type:String
+    style: {
+        type: String
     },
     // 播放次数
-    playcount:{
-        type:String
+    playcount: {
+        type: String
     },
     // 上传时间
-    date:{
-        type:String,
-        require:true
+    date: {
+        type: String,
+        require: true
     }
 })
 
