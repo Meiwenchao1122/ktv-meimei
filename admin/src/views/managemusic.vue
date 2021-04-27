@@ -492,7 +492,7 @@ export default {
         },
         // 删除歌曲
         onDeleteSong(song){
-            this.$confirm(`确定删除 ${song.songName} (${song.artist}) 歌曲吗?不可撤销,是否继续? `,'风险提示', {
+            this.$confirm(`确定删除 ${song.songName} (${song.artist}) 歌曲吗? `,'不可逆操作', {
                 confirmButtonText:"确定",
                 cancelButtonText:"取消",
                 type:"warning"
