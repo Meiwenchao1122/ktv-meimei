@@ -20,26 +20,25 @@
             </el-form-item>
         </el-form>
         <Row class="order-current" v-if="card.flag">
-            <Card style="width:350px">
+            <Card style="width:750px">
                 <p slot="title">
-                    <Icon type="ios-checkmark-circle" style="color:green;" />
-                    开户成功
-                </p>
-                <a href="javascript:(0);" slot="extra">
                     <Icon type="ios-loop-strong"></Icon>
-                    创建时间:{{card.currentTime}}
-                </a>
+                    <a href="#">
+                        订单起始时间:{{card.currentTime}} 
+                    </a>
+                    
+                </p>
                 <div style="padding:5px 0px;">
-                    <Icon type="ios-contact" />账号:<span style="padding: 0px 2px;color:#19be6b;font-weight:700;">{{card.account}}</span>
+                    账号:<span style="padding: 0px 2px;color:#000;font-weight:700;">{{card.account}}</span>
                 </div>
                 <div style="padding:5px 0px;">
-                    <Icon type="ios-key" />密码:<span style="padding: 0px 2px;color:#19be6b;font-weight:700;">{{card.password}}</span>
+                    密码:<span style="padding: 0px 2px;color:#000;font-weight:700;">{{card.password}}</span>
                 </div>
                 <div style="padding:5px 0px;">
-                    <Icon type="logo-bitcoin" />金额:<span style="padding: 0px 2px;color:#ed4014;font-weight:700;">{{card.money}}元</span>
+                    金额:<span style="padding: 0px 2px;color:#ed4014;font-weight:700;">{{card.money}}元</span>
                 </div>
                 <div style="padding:5px 0px;">
-                    <Icon type="ios-copy" />订单编号:<span style="padding: 0px 2px;color:#2b85e4;">{{card.order_id}}</span>
+                    订单编号:<span style="padding: 0px 2px;color:#2b85e4;">{{card.order_id}}</span>
                 </div>
             </Card> 
         </Row>
@@ -53,10 +52,10 @@
             <div style="text-align:left;font-size:14px;">
                 <Row>
                     <Col span="18">
-                        <Input v-model="inputPassword" type="password" icon="ios-key" @keyup.enter.native="checkPwd()"  placeholder="请输入管理员密码..." style="width: 200px" />
+                        <Input v-model="inputPassword" type="password" icon="ios-key" @keyup.enter.native="openAccount()"  placeholder="请输入管理员密码..." style="width: 200px" />
                     </Col>
                     <Col span="6">
-                        <Button type="primary" size="large" @click="checkPwd()">验证</Button>
+                        <Button type="primary" size="large" @click="openAccount()">验证</Button>
                     </Col>
                 </Row>
             </div>
@@ -96,12 +95,15 @@ export default {
 
     },
     methods:{
-        checkPwd(){
+        // 开通临时用户--首先需要验证
+        openAccount(){
+            //没有选择时长的时候 要提醒
             if(this.inputPassword.trim().length){
                 this.isCheckPassword = false;
-                wsmLoading.start("正在验证密码,请稍候...");
+                wsmLoading.start("正在验证密码");
                  setTimeout(() => {
                     this.$axios.post("http://localhost:8633/api/admin/islegal",{
+                        //验证密码-才可以进行后面的开户动作
                         password:this.inputPassword,
                         email:this.$store.getters.adminInfo.email
                     }).then(res => {
@@ -109,6 +111,7 @@ export default {
                             this.ruleForm.order_id = new Date().format("yyyyMMddHHmmss") + `_${Math.floor(Math.random() * 100000)}`;
                             this.ruleForm.startTime = new Date().format("yyyy/MM/dd HH:mm:ss");
                             this.ruleForm.endTime = new Date(this.timeLong * 60 * 60 * 1000 + new Date(this.ruleForm.startTime).getTime()).format("yyyy/MM/dd HH:mm:ss");
+                            // 将用户信息传入到数据库
                             this.$axios.post("http://localhost:8633/api/admin/account/new", this.ruleForm)
                                     .then(res => {
                                         this.card = {...res.data};
@@ -165,7 +168,7 @@ export default {
         width: 100px;
     }
     .ruleform{
-        margin-top: 100px;
+        margin-top: 60px;
         border-radius: 10px;
         font-size: 18px;
         font-weight: 900;
@@ -178,7 +181,7 @@ export default {
 
     .order-current{
         position: fixed;
-        margin-top: 380px;
+        margin-top: 330px;
         background: rgba(0, 0, 0, .1);
     }
     

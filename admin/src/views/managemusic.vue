@@ -4,7 +4,7 @@
         <audio ref="musicPlayer" :src="toListenSrc" @ended="ended" autoplay preload="load"></audio>
         <Row style="padding:20px 60px 20px 40px;">
             <Col :span="5">
-                <Input prefix="ios-musical-notes" clearable v-model="searchName" @keypress.enter.native="searchSong()" placeholder="按 歌名, 歌手 搜索歌曲..." style="width: auto" />
+                <Input prefix="ios-musical-notes" clearable v-model="searchName" @keypress.enter.native="searchMusic()" placeholder="按 歌名, 歌手 搜索歌曲..." style="width: auto" />
             </Col>
             <Col :span="3">
                 <Button type="primary" style="margin-left:5px;" @click="getAllSong()">所有歌曲</Button>
@@ -100,7 +100,7 @@
                             size="small"
                             circle
                             icon="el-icon-star-off"
-                            @click='likeSongs(scope.row)'
+                            @click='system_likes(scope.row)'
                         ></el-button>
                         <el-button 
                             type="primary" 
@@ -424,7 +424,7 @@ export default {
                     }).then(res => {
                         console.log(res)
                         if(res.data == true){
-                            if(this.flag == 1){  // 添加歌曲
+                            if(this.flag == 1){  // 添加歌曲 // flag 1 上传歌曲  2 编辑歌曲  3删除歌曲
                                 wsmLoading.start("密码正确, 正在添加歌曲");
                                 this.$axios.post("http://localhost:8633/api/admin/music/add", this.addForm)
                                     .then(res => {
@@ -435,7 +435,7 @@ export default {
                                             this.$Message.success("添加成功");
                                         });
                                     })
-                            }else if(this.flag == 2){ // 编辑歌曲
+                            }else if(this.flag == 2){ // 编辑歌曲 // flag 1 上传歌曲  2 编辑歌曲  3删除歌曲
                                 wsmLoading.start("密码正确, 正在编辑歌曲歌曲");
                                 this.$axios.post("http://localhost:8633/api/admin/music/edit", this.editForm)
                                     .then(res => {
@@ -447,7 +447,7 @@ export default {
                                             this.$Message.success("更新成功");
                                         });
                                     })
-                            }else if(this.flag == 3){  // 删除歌曲
+                            }else if(this.flag == 3){  // 删除歌曲 // flag 1 上传歌曲  2 编辑歌曲  3删除歌曲
                                 wsmLoading.start("密码正确, 正在删除歌曲..");
                                 this.$axios.post("http://localhost:8633/api/admin/music/delete", this.delRow)
                                     .then(res => {
@@ -474,18 +474,18 @@ export default {
                 })
             }
         },
-        // 管理员收藏歌曲
-        likeSongs(song){
-            console.log(song)
-            this.$confirm(`要添加 ${song.songName} (${song.artist}) 歌曲到KTV推荐歌曲里吗? `,'操作提示', {
+        // 添加到系统推荐歌曲列表
+        system_likes(songObj){
+            this.$confirm(`要添加 ${songObj.songName} (${songObj.artist}) 歌曲到系统推荐列表吗? `,'操作提示', {
                 confirmButtonText:"确定",
                 cancelButtonText:"取消",
                 type:"warning"
             }).then(() => {
+                //存入到数据库
                 this.$axios.post("http://localhost:8633/api/admin/adminlike/add", {
-                    s_id:song._id
+                    s_id:songObj._id
                 }).then(res => {
-                    this.$Message.success("收藏成功");
+                    this.$Message.success("添加至推荐列表完成");
                 }).catch(err => console.error(err))
             }).catch(() => {
             })
@@ -509,6 +509,7 @@ export default {
                 if(valid){
                     this.isCheckPassword = true;
                     this.editDialog.show = false;
+                    // flag 1 上传歌曲  2 编辑歌曲  3删除歌曲
                     this.flag = 2;
                 }
                 // 不合法
@@ -534,17 +535,21 @@ export default {
             console.log(this.editForm)
         },
         // 搜索歌曲
-        searchSong(){
-            if(this.searchName.trim().length){
+        searchMusic(){
+            //搜索框不为空
+            if(this.searchName.trim().length != 0){
+                //查询歌曲的接口
                 this.$axios.post("http://localhost:8633/api/music/search/byname",{
                     searchName:this.searchName
                 }).then(res => {
-                    this.allSongs = res.data;
+                    //数据存起来 方便渲染
                     this.allTableData = res.data;
+                    this.allSongs = res.data;
+                    //设置页码
                     this.setPaginations();
                 })
             }else{
-                this.$Message.warning("搜索内容不能为空..")
+                this.$Message.warning("搜索错误,内容不能为空")
             }
         },
         // 添加音乐
