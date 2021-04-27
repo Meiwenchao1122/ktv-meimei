@@ -65,25 +65,25 @@
         </div>
         <!-- 登录弹窗 -->
         <Modal v-model="loginModal" width="450">
-            <p slot="header" style="color:#f60;text-align:center">
-                <Icon type="md-bicycle" />
-            </p>
             <div v-if="loginModal">
-                <div class="ranklistbox" style="width:100%;padding:0px 2px;">
-                    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="55px">
+                <div class="login_box">
+                    <!-- 头像区域 -->
+                    <div class="avatar_box">
+                        <img src="../assets/image/logo.png" alt="">
+                    </div>
+                    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="55px" class="login_form">
                         <el-form-item label="账号:" prop="account" >
                             <el-input type="account" v-model="ruleForm.account"></el-input>
                         </el-form-item>
                         <el-form-item label="密码:" prop="password">
                             <el-input type="password" @keypress.enter.native="submit('ruleForm')" v-model="ruleForm.password"></el-input>
                         </el-form-item>
+                         <!-- 按钮区域 -->
+                        <el-form-item class="btns">
+                            <el-button type="primary" @click="submit('ruleForm')">登录</el-button>
+                        </el-form-item>
                     </el-form>
                 </div>
-            </div>
-            <div slot="footer" v-if="loginModal">
-                <Row>
-                    <Button type="success" long @click="submit('ruleForm')">登录</Button>
-                </Row>
             </div>
         </Modal>
 
@@ -627,5 +627,47 @@ export default {
         -webkit-animation: rotation 3s linear infinite;
         -o-animation: rotation 3s linear infinite;
     }
+}
+
+.login_box {
+  width: 450px;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 3px;
+  position: absolute;
+  left: 50%;
+  top: 200%;
+  transform: translate(-50%, -50%);
+
+  .avatar_box {
+    height: 130px;
+    width: 130px;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 0 10px #ddd;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #eee;
+    }
+  }
+}
+
+.login_form {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.btns {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
