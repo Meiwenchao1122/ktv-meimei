@@ -23,10 +23,11 @@
             <Card style="width:750px">
                 <p slot="title">
                     <Icon type="ios-loop-strong"></Icon>
+                    订单起始时间:
                     <a href="#">
-                        订单起始时间:{{card.currentTime}} 
+                        {{card.currentTime}} 
                     </a>
-                    
+                    订单编号:<span style="padding: 0px 2px;color:#2b85e4;">{{card.order_id}}</span>
                 </p>
                 <div style="padding:5px 0px;">
                     账号:<span style="padding: 0px 2px;color:#000;font-weight:700;">{{card.account}}</span>
@@ -36,9 +37,6 @@
                 </div>
                 <div style="padding:5px 0px;">
                     金额:<span style="padding: 0px 2px;color:#ed4014;font-weight:700;">{{card.money}}元</span>
-                </div>
-                <div style="padding:5px 0px;">
-                    订单编号:<span style="padding: 0px 2px;color:#2b85e4;">{{card.order_id}}</span>
                 </div>
             </Card> 
         </Row>

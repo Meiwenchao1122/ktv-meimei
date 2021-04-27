@@ -1,36 +1,29 @@
 <template>
     <!-- 登录 -->
-    <div class="login_container">
-    <div class="login_box">
-      <!-- 头像区域 -->
-      <div class="avatar_box">
-        <img src="../assets/image/logo.png" alt="">
-      </div>
-      <!-- 登录表单区域 -->
-      <el-form label-position="top" size="small" :inline-message="inlinemessage" :model="loginForm" :rules="loginRule" ref="loginForm" label-width="100px" class="login_form">
-        <!-- 用户名 -->
-        <el-form-item label="邮箱" prop="email">
-          <el-input v-model="loginForm.email" placeholder="请输入邮箱"></el-input>
-        </el-form-item>
-        <!-- 密码 -->
-        <el-form-item label="密码" prop="password">
-          <el-input type="password" @keypress.enter.native="submitForm('loginForm')" show-password v-model="loginForm.password" placeholder="请输入密码"></el-input>
-        </el-form-item>
-        <!-- 验证码 -->
-        <el-form-item label="验证码" prop="inputCaptcha">
-            <div class="yzm">
-                <el-input style="width:150px;" v-model="inputCaptcha" placeholder="验证码"></el-input>
-                <img width="80" style="background:#EEE9E9;margin-left:30px;" ref="captcha" height="32" src="http://localhost:8633/api/safecode" @click="refreshCaptcha">
-            </div>
-        </el-form-item>
-        <!-- 按钮区域 -->
-        <el-form-item class="btns">
-          <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
-        </el-form-item>
-      </el-form>
+    <div class="login">
+        <div class="login-title">
+            管理员登录
+        </div>
+        <div class="form-box">
+            <el-form class="login-form" label-position="top" size="small" :inline-message="inlinemessage" :model="loginForm" :rules="loginRule" ref="loginForm" label-width="100px">
+                <el-form-item label="邮箱" prop="email">
+                    <el-input type="text" v-model="loginForm.email" placeholder="请输入邮箱"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="password">
+                    <el-input type="password" @keypress.enter.native="submitForm('loginForm')" show-password v-model="loginForm.password" placeholder="请输入密码"></el-input>
+                </el-form-item>
+                <el-form-item label="验证码" prop="inputCaptcha">
+                    <div class="yzm">
+                        <el-input style="width:150px;" v-model="inputCaptcha" placeholder="验证码"></el-input>
+                        <img width="80" style="background:#EEE9E9;margin-left:30px;" ref="captcha" height="32" src="http://localhost:8633/api/safecode" @click="refreshCaptcha">
+                    </div>
+                </el-form-item>
+                <el-form-item>
+                    <el-button class="login-btn" type="primary" @click="submitForm('loginForm')">确定登录</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
     </div>
-  </div>
-
 </template>
 <script>
 import wsmLoading from "@/plugins/wsmLoading"
@@ -128,74 +121,72 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.login{
+    width: 100%;
+    height: 100%;
+    cursor: default;
+    padding: 40px 0px;
+    color:red;
+    background-image: url(../assets/image/bg2.jpg);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
 
-.login_container {
-  background-color: #2b4b6b;
-  height: 100%;
-}
-
-.login_box {
-  width: 450px;
-  height: 450px;
-  background-color: #fff;
-  border-radius: 3px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  .avatar_box {
-    height: 130px;
-    width: 130px;
-    border: 1px solid #eee;
-    border-radius: 50%;
-    padding: 10px;
-    box-shadow: 0 0 10px #ddd;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: #eee;
+    .login-title{
+        width:100%;
+        height: 150px;
+        line-height: 150px;
+        text-align: center;
+        font-size: 40px;
+        color: aliceblue;
+        font-family: "隶书";
     }
-  }
-}
 
-.login_form {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
+    // 表单
+    .form-box{
+        width: 100%;
+        // min-width: 500px;
 
-.btns {
-  display: flex;
-  justify-content: flex-end;
-}
+        .login-form{
+            width: 300px;
+            margin: 0px auto;
+            background-color: rgba(255, 255, 255,.9);
+            border: 1px solid #cdcdcd;
+            padding: 10px 15px;
+            border-radius: 5px;
 
-// 验证码区域
-.yzm{
-    display:flex;
-    align-content:center;
-    input{
-        width: 160px;
-        height: 32px;
-        outline: none;
-        border: 1px solid #eee;
-        padding: 2px 15px;
-        border-radius: 5px;
-        font-size: 13px;
-    }
-    ::-webkit-input-placeholder{
-        color:#bbb;
-    }
-    img:hover{
-        cursor: pointer;
-    }
-}
+            .login-btn{
+                width: 100%;
+                background: linear-gradient(to bottom, rgba(47, 228, 89, 0.9),#26a744);
+                font-weight: 600;
+            }
+            .login-btn:hover{
+                background-color: rgb(94, 255, 132);
+            }
 
+
+            // 验证码区域
+            .yzm{
+                display:flex;
+                align-content:center;
+                input{
+                    width: 160px;
+                    height: 32px;
+                    outline: none;
+                    border: 1px solid #eee;
+                    padding: 2px 15px;
+                    border-radius: 5px;
+                    font-size: 13px;
+                }
+                ::-webkit-input-placeholder{
+                    color:#bbb;
+                }
+                img:hover{
+                    cursor: pointer;
+                }
+            }
+
+        }
+    } 
+}
 </style>
