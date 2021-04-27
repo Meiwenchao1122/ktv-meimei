@@ -102,10 +102,10 @@
             <div style="text-align:left;font-size:14px;">
                 <Row>
                     <Col span="18">
-                        <Input v-model="inputPassword" type="password" icon="ios-key" @keyup.enter.native="checkPwd()"  placeholder="请输入管理员密码..." style="width: 200px" />
+                        <Input v-model="inputPassword" type="password" icon="ios-key" @keyup.enter.native="delUserData()"  placeholder="请输入管理员密码..." style="width: 200px" />
                     </Col>
                     <Col span="6">
-                        <Button type="primary" size="large" @click="checkPwd()">验证</Button>
+                        <Button type="primary" size="large" @click="delUserData()">验证</Button>
                     </Col>
                 </Row>
             </div>
@@ -141,7 +141,7 @@ export default {
     },
     methods:{
         //删除订单
-        checkPwd(){
+        delUserData(){
             if(this.inputPassword.trim().length){
                 this.isCheckPassword = false;
                 wsmLoading.start("正在验证密码,请稍候...");
@@ -166,7 +166,7 @@ export default {
                 this.isCheckPassword = false;
                 this.$Modal.warning({
                     title:"提示",
-                    content:"密码不能为空,请输入管理员口令...",
+                    content:"请输入管理员密码",
                     onOk:()=>{
                         this.isCheckPassword = true;
                     }

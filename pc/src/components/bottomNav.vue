@@ -1,46 +1,58 @@
 <template>
-    <div class="topNav">
+    <div class="bottom_btn">
         <div class="container"></div>
         <div class="inner-box">
             <div class="left">
-                <div class="home" @click="goHome">
+                <!-- 选个首页 -->
+                <div class="selectd_home" @click="toHome_page">
                     <Icon type="ios-home" />
                 </div>
-                <div class="selected" @click="selected">
+                <!-- 播放列表 -->
+                <div class="selected" @click="selected_list">
                     <Icon type="ios-musical-notes" />
                 </div>
-                <div class="addvolume" @click="addvolume">
-                    <Icon type="ios-volume-up" />
-                </div>
-                <div class="reducevolume" @click="reducevolume">
+                <!-- 减少音量 -->
+                <div class="reducevolume" @click="reduce_v">
                     <Icon type="ios-volume-mute" />
                 </div>
+                <!-- 增加音量 -->
+                <div class="addvolume" @click="add_v">
+                    <Icon type="ios-volume-up" />
+                </div>
             </div>
+            <!-- 歌曲调节 -->
             <div class="middle">
                 <img class="an" :src="currentPoster" alt="">
                 <div class="control-btn">
+                    <!-- 上一曲 -->
                     <div class="prev-btn" @click="playPrev">
                         <Icon type="ios-rewind" />
                     </div>
-                    <div class="play" @click="playOrpause">
+                    <!-- 暂停播放 -->
+                    <div class="play" @click="play_pause">
                         <Icon type="ios-play" id="ios-play" />
                         <Icon type="ios-pause" id="ios-pause" />
                     </div>
+                    <!-- 下一曲 -->
                     <div class="next-btn" @click="playNext">
                         <Icon type="ios-fastforward" />
                     </div>
                 </div>
             </div>
             <div class="right">
-                <div class="minormax" @click="minOrmax">
+                <!-- 静音 -->
+                <div class="minormax" @click="min_max">
                     <Icon type="md-volume-off" />
                 </div>
+                <!-- 单曲循环 -->
                 <div class="single-cycle" @click="singleCycle">
                     <Icon type="md-sync" />
                 </div>
+                <!-- 列表循环 -->
                 <div class="order-cycle" @click="orderCycle">
                     <Icon type="md-swap" />
                 </div>
+                <!-- 登录退出 -->
                 <div class="login">
                     <span v-if="!isLogin" @click="loginModal = true">
                         <Icon type="md-log-in" />
@@ -185,7 +197,7 @@ export default {
             }
         },
         // 播放或暂停
-        playOrpause(){
+        play_pause(){
             if(hasLogin()){
                 if(this.$refs.musicPlayer.src.split("?")[1] == "id=0"){
                     this.$confirm("请先添加歌曲", "提示", {
@@ -311,7 +323,7 @@ export default {
             }
         },
         // 静音或最大
-        minOrmax(){
+        min_max(){
             if(hasLogin()){
                 if(this.$refs.musicPlayer.volume == 0){
                     this.$refs.musicPlayer.volume = 1;
@@ -327,7 +339,7 @@ export default {
             }
         },
         // 减小音量
-        reducevolume(){
+        reduce_v(){
             if(hasLogin()){
                 $(".minormax").css("color","rgb(219, 217, 217)")
                 this.$Message.success("音量-")
@@ -341,7 +353,7 @@ export default {
             }
         },
         // 增加音量
-        addvolume(){
+        add_v(){
             if(hasLogin()){
                 $(".minormax").css("color","rgb(219, 217, 217)")
                 this.$Message.success("音量+")
@@ -355,11 +367,11 @@ export default {
             }
         },
         // 回首页
-        goHome(){
+        toHome_page(){
             this.$route.path == "/home/index" ? console.log("不能前进了") : this.$router.push("/")
         },
         // 去已选界面
-        selected(){
+        selected_list(){
             if(hasLogin()){
                 this.$Message.success("已选歌曲")
                 this.$router.push("/home/selected");
@@ -468,7 +480,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.topNav{
+.bottom_btn{
     height: 60px;
     display: flex;
     align-items: center;
@@ -500,12 +512,12 @@ export default {
             width: 100%;
             display: flex;
 
-            .home,.selected,.addvolume,.reducevolume{
+            .selectd_home,.selected,.addvolume,.reducevolume{
                 height: 100%;
                 flex: 1;
                 font-size: 30px;
                 text-align: center;
-                color: rgb(196, 196, 26);
+                color: rgb(189, 226, 247);
                 div{
                     font-size: 10px;
                 }
@@ -513,9 +525,9 @@ export default {
             }
 
             .selected,.selected,.addvolume,.reducevolume{
-                color: rgb(219, 217, 217);
+                color: yellow;
                 &:hover{
-                    color: rgb(196, 196, 26);
+                    color:rgb(0, 132, 255);
                 }
             }
         }
@@ -595,9 +607,9 @@ export default {
                 cursor: pointer;
             }
             .single-cycle, .order-cycle, .minormax{
-                color: rgb(221, 222, 223);
+                color: yellow;
                 &:hover{
-                    color: rgb(196, 196, 26);
+                    color:rgb(0, 132, 255);
                 }
             }
         }
