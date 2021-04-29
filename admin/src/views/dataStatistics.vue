@@ -84,6 +84,10 @@ export default {
                                 "name":'王赫野',
                                 "value":0,
                             },
+                            {
+                                "name":'孙燕姿',
+                                "value":0,
+                            },
                         ]
                
                         for (let i = 0; i < this.labList.length; i++) {
