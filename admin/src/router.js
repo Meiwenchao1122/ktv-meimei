@@ -15,62 +15,63 @@ import DataStatistics from "@/views/dataStatistics"  // 数据统计展示
 //解决重复点击 报错
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
+    return originalPush.call(this, location).catch(err => err)
 }
 
 
 
 Vue.use(Router)
 const vueRouter = new Router({
-  mode:"history",
-  base: process.env.BASE_URL,
-  routes:[
-      {path:"/", redirect:"/admin"},
-      {
-          path:"/admin",
-          component:Home,
-          children:[
-            {path:'/', redirect:"user_service"},
-            {path:'manage/music', name:"managemusic", component:ManageMusic, meta:{title:"歌曲管理"}},
-            {path:'user_service', name:"user_service", component:User_Service, meta:{title:"分配账号密码"}},
-            {path:'allorders', name:"allorders", component:AllOrders, meta:{title:"历史订单"}},
-            {path:'music/likes', name:"adminlikes", component:AdminLikes, meta:{title:"系统推荐歌曲"}},
-            {path:'dataStatistics', name:"dataStatistics", component:DataStatistics, meta:{title:"数据统计展示"}},
-          ]
-      },
-      {
-        path:"/login",
-        name:"login",
-        component:Login,
-        meta:{
-          title:"音乐后台管理"
+    mode: "history",
+    base: process.env.BASE_URL,
+    routes: [
+        { path: "/", redirect: "/admin" },
+        {
+            path: "/admin",
+            component: Home,
+            children: [
+                { path: '/', redirect: "user_service" },
+                { path: 'manage/music', name: "managemusic", component: ManageMusic, meta: { title: "歌曲管理" } },
+                { path: 'user_service', name: "user_service", component: User_Service, meta: { title: "分配账号密码" } },
+                { path: 'allorders', name: "allorders", component: AllOrders, meta: { title: "历史订单" } },
+                { path: 'music/likes', name: "adminlikes", component: AdminLikes, meta: { title: "系统推荐歌曲" } },
+                { path: 'dataStatistics', name: "dataStatistics", component: DataStatistics, meta: { title: "数据统计展示" } },
+            ]
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: Login,
+            meta: {
+                title: "音乐后台管理"
+            }
+        },
+        {
+            path: "*",
+            name: "NotFound",
+            component: NotFound,
+            meta: {
+                title: "页面找不到"
+            }
         }
-      },
-      {
-          path:"*",
-          name:"NotFound",
-          component:NotFound,
-          meta:{
-              title:"页面找不到"
-          }
-      }
-  ]
+    ]
 })
 
+// 导航守卫
 vueRouter.beforeEach((to, from, next) => {
     LoadingBar.start();
     const adminToken = localStorage.adminToken;
-    if(to.path == "/login"){
-        if(adminToken){
+    if (to.path == "/login") {
+        if (adminToken) {
             next("/");
-        }else{
+        } else {
             next();
         }
-    }else{
-      // next();
-        if(adminToken){
+    } else {
+        // next();
+        if (adminToken) {
             next();
-        }else{
+        } else {
             next("/login");
         }
     }
@@ -78,9 +79,9 @@ vueRouter.beforeEach((to, from, next) => {
 
 vueRouter.afterEach((to, next) => {
     LoadingBar.finish();
-    if(to.meta.title){
+    if (to.meta.title) {
         document.title = to.meta.title;
-    }else{
+    } else {
         document.title = "音乐后台管理系统";
     }
 })

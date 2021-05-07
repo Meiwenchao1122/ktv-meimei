@@ -117,6 +117,7 @@ export default {
     },
     mounted(){
         setTimeout(() => {
+            // 用定时器 检测当前播放的歌曲, 要是有改变,那么浏览器的播放器 就会立马改变音乐
             this.currentSong = JSON.parse(localStorage.currentSong)[0] ? JSON.parse(localStorage.currentSong)[0] : {_id:0};
             if(localStorage.play == "0"){
                 this.$refs.musicPlayer.pause();
@@ -135,6 +136,7 @@ export default {
     },
     methods:{
         end(){
+            //播放状态 localStorage.playModle == 1
             if(localStorage.playModle == 1){
                 const song = nextSong();
                 this.$refs.musicPlayer.src = "http://localhost:8633/api/music/nowmusic?id=" + song._id
@@ -160,6 +162,7 @@ export default {
                         const song = prevSong();
                         this.$refs.musicPlayer.src = "http://localhost:8633/api/music/nowmusic?id=" + song._id
                         const obj = [song];
+                        // 设置 当前播放的歌曲
                         localStorage.setItem("currentSong", JSON.stringify(obj))
                         this.currentSong = song;
                         this.$Message.success("上一曲")
@@ -258,6 +261,7 @@ export default {
                         
                     }else{
                         const song = nextSong();
+                        //取 数据库中 通过歌曲id找到该歌曲
                         this.$refs.musicPlayer.src = "http://localhost:8633/api/music/nowmusic?id=" + song._id
                         const obj = [song];
                         localStorage.setItem("currentSong", JSON.stringify(obj))

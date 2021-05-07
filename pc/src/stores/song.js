@@ -1,57 +1,60 @@
 import { stat } from "fs";
 const state = {
+    //播放列表
     songList: localStorage.songList ? JSON.parse(localStorage.getItem("songList")) : [],
-    currentSong : localStorage.currentSong ? JSON.parse(localStorage.getItem("currentSong"))[0] : '',
-    playModle : localStorage.playModle ? localStorage.getItem("playModle") : -1,
-    volume:0,
+    // 当前的播放
+    currentSong: localStorage.currentSong ? JSON.parse(localStorage.getItem("currentSong"))[0] : '',
+    // 暂停 或 播放
+    playModle: localStorage.playModle ? localStorage.getItem("playModle") : -1,
+    volume: 0,
 };
 const getters = {
-    songList:state => state.songList,
-    songListLen:state => state.songList.length,
-    currentSong:state => state.currentSong,
-    playModle:state => state.playModle,
-    volume:state => state.volume
+    songList: state => state.songList,
+    songListLen: state => state.songList.length,
+    currentSong: state => state.currentSong,
+    playModle: state => state.playModle,
+    volume: state => state.volume
 };
 const mutations = {
-    setSongList(state, songInfo){
+    setSongList(state, songInfo) {
         state.songList.push(songInfo);
     },
-    setAllSong(state, songlist){
+    setAllSong(state, songlist) {
         state.songList = songlist;
     },
-    setCurrentSong(state, songinfo){
+    setCurrentSong(state, songinfo) {
         state.currentSong = songinfo;
     },
-    setPlayModle(state, modle){
+    setPlayModle(state, modle) {
         state.playModle = modle;
         localStorage.setItem("playModle", modle)
     },
-    setVolume(state, v){
-        if(v > 0){
-            if(state.volume < 0.95){
+    setVolume(state, v) {
+        if (v > 0) {
+            if (state.volume < 0.95) {
                 state.volume += v;
             }
-        }else{
-            if(state.volume > 0.05){
+        } else {
+            if (state.volume > 0.05) {
                 state.volume -= v;
             }
         }
     }
 };
 const actions = {
-    setSongList:({commit}, songInfo) => {
+    setSongList: ({ commit }, songInfo) => {
         commit("setSongList", songInfo);
     },
-    setAllSong:({commit}, songlist) => {
+    setAllSong: ({ commit }, songlist) => {
         commit("setAllSong", songlist);
     },
-    setCurrentSong:({commit}, songinfo) => {
+    setCurrentSong: ({ commit }, songinfo) => {
         commit("setCurrentSong", songinfo);
     },
-    setPlayModle({commit}, modle){
+    setPlayModle({ commit }, modle) {
         commit("setPlayModle", modle);
     },
-    setVolume({commit}, v){
+    setVolume({ commit }, v) {
         commit("setVolume", v);
     }
 }

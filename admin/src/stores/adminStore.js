@@ -1,29 +1,29 @@
 const state = {
-    // 电子验证是否通过
-    isAdminAuthorization:false,
+    // 电子验证是否通过--是否是登录状态
+    isAdminAuthorization: false,
     // 管理员信息
-    adminInfo:[]
+    adminInfo: []
 };
 const getters = {
-    isAdminAuthorization:state => state.isAdminAuthorization,
-    adminInfo:state => state.adminInfo,
+    isAdminAuthorization: state => state.isAdminAuthorization,
+    adminInfo: state => state.adminInfo,
 };
 const mutations = {
-    isAdminAuthorization:(state, authorization) => {
+    isAdminAuthorization: (state, authorization) => {
         state.isAdminAuthorization = authorization;
     },
-    setAdminInfo:(state, info) => {
+    setAdminInfo: (state, info) => {
         state.adminInfo = info;
     }
 };
 const actions = {
-    isAdminAuthorization:({commit}, authorization) => {
+    isAdminAuthorization: ({ commit }, authorization) => {
         commit("isAdminAuthorization", authorization);
     },
-    setAdminInfo:({commit}, info) => {
+    setAdminInfo: ({ commit }, info) => {
         commit("setAdminInfo", info);
     },
-    clearAdminAuthorization:({commit}) => {
+    clearAdminAuthorization: ({ commit }) => {
         localStorage.removeItem("adminToken");
         commit("isAdminAuthorization", false);
     }

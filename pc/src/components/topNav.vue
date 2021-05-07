@@ -28,6 +28,7 @@ export default {
     },
     computed:{
         allSongList(){
+            // 播放列表
             return this.$store.getters.songList;
         },
         currentSong:{
