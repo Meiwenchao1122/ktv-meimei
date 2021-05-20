@@ -1,10 +1,11 @@
 <template>
     <!-- 歌曲管理 -->
     <div class="managemusic">
+        <!-- 播放器 标签 -->
         <audio ref="musicPlayer" :src="toListenSrc" @ended="ended" autoplay preload="load"></audio>
         <Row style="padding:20px 60px 20px 40px;">
             <Col :span="5">
-                <Input prefix="ios-musical-notes" clearable v-model="searchName" @keypress.enter.native="searchMusic()" placeholder="按 歌名, 歌手 搜索歌曲..." style="width: auto" />
+                <Input prefix="ios-musical-notes" clearable v-model="searchName" @keypress.enter.native="searchMusic()" placeholder="按 歌名或者歌手 搜索歌曲..." style="width: auto" />
             </Col>
             <Col :span="3">
                 <Button type="primary" style="margin-left:5px;" @click="getAllSong()">所有歌曲</Button>

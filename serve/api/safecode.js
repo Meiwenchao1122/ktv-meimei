@@ -2,7 +2,7 @@
 const svgCaptcha = require('svg-captcha');
 const router = require("express").Router();
 
-// 生成验证码
+// 生成验证码 接口
 router.get("/", (req, res) => {
     const captcha = svgCaptcha.create({
         // 翻转颜色  

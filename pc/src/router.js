@@ -16,56 +16,53 @@ import notFound from './views/404.vue'
 Vue.use(Router)
 
 const vueRouter = new Router({
-    mode:"history",
-    base:process.env.BASE_URL,
-    routes:[
-      {
-        path:"/", 
-        redirect:"/home"
-      },
-      {
-        path:"/home", 
-        component:Home,
-        children:[
-          {path:"", redirect:"index"},
-          {path:"index", name:"index", component:Index},
-          {path:"hot", name:"hot", component:Hot, meta:{title:"歌曲热榜"}},
-          {path:"artist", name:"artist", component:Artist, meta:{title:"明星点歌"}},
-          {path:"ABC", name:"abc", component:ABC, meta:{title:"拼音点歌"}},
-          {path:"language", name:"language", component:Language, meta:{title:"语种点歌"}},
-          {path:"style", name:"style", component:Style, meta:{title:"风格点歌"}},
-          {path:"ktvlikes", name:"ktvlikes", component:KtvLikes, meta:{title:"KTV推荐"}},
-          {path:"selected", name:"selected", component:Selected, meta:{title:"已选歌曲"}},
-        ]
-      },
-      { 
-        path:"*", 
-        component:notFound,
-        name:"404", 
-        meta:{
-          title:"o(╥﹏╥)o迷茫中...",
-        }
+  mode: "history",
+  base: process.env.BASE_URL,
+  routes: [
+    {
+      path: "/",
+      redirect: "/home"
+    },
+    {
+      path: "/home",
+      component: Home,
+      children: [
+        { path: "", redirect: "index" },
+        { path: "index", name: "index", component: Index },
+        { path: "hot", name: "hot", component: Hot, meta: { title: "歌曲热榜" } },
+        { path: "artist", name: "artist", component: Artist, meta: { title: "明星点歌" } },
+        { path: "ABC", name: "abc", component: ABC, meta: { title: "拼音点歌" } },
+        { path: "language", name: "language", component: Language, meta: { title: "语种点歌" } },
+        { path: "style", name: "style", component: Style, meta: { title: "风格点歌" } },
+        { path: "ktvlikes", name: "ktvlikes", component: KtvLikes, meta: { title: "KTV推荐" } },
+        { path: "selected", name: "selected", component: Selected, meta: { title: "已选歌曲" } },
+      ]
+    },
+    {
+      path: "*",
+      component: notFound,
+      name: "404",
+      meta: {
+        title: "o(╥﹏╥)o迷茫中...",
       }
-    ]
+    }
+  ]
 })
 
 
 vueRouter.beforeEach((from, to, next) => {
   LoadingBar.start();
-  // if(to.path == "/" || to.path == "/home" || to.pa){
-  //     next();
-  // }
   next();
 })
 
 vueRouter.afterEach((to, next) => {
-    LoadingBar.finish();
-    if(to.meta.title){
-        document.title = to.meta.title;
-    }else{
-        document.title = "自助点歌系统";
-    }
-    
+  LoadingBar.finish();
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  } else {
+    document.title = "自助点歌系统";
+  }
+
 })
 
 

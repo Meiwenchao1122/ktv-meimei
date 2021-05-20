@@ -216,7 +216,7 @@ router.post("/adminlike/search", passport.authenticate("jwt", { session: false }
         })
 })
 
-// 创建ktv账号和密码
+// 创建账号和密码
 router.post("/account/new", passport.authenticate("jwt", { session: false }), async (req, res) => {
     const orderInfo = {
         account: newAccount(req.body.order_id).account,

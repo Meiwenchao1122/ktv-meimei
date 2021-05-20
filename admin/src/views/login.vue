@@ -34,6 +34,7 @@
 </template>
 <script>
 import wsmLoading from "@/plugins/wsmLoading"
+//获取 token
 import jwt_decode from 'jwt-decode';
 export default {
     name:"login",
@@ -122,6 +123,7 @@ export default {
         },
         // 刷新验证码
         refreshCaptcha(){
+            //通过请求获取验证码
             this.$refs.captcha.src = "http://localhost:8633/api/safecode?d=" + Math.random();
         },
     }

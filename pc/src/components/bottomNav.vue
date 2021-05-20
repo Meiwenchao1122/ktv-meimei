@@ -185,6 +185,7 @@ export default {
                         const song = prevSong();
                         this.$refs.musicPlayer.src = "http://localhost:8633/api/music/nowmusic?id=" + song._id
                         const obj = [song];
+                        //设置当前播放
                         localStorage.setItem("currentSong", JSON.stringify(obj))
                         this.currentSong = song;
                         this.$Message.success("上一曲")
@@ -264,6 +265,7 @@ export default {
                         //取 数据库中 通过歌曲id找到该歌曲
                         this.$refs.musicPlayer.src = "http://localhost:8633/api/music/nowmusic?id=" + song._id
                         const obj = [song];
+                        //当前播放
                         localStorage.setItem("currentSong", JSON.stringify(obj))
                         this.currentSong = song;
                         this.$Message.success("下一曲")
@@ -435,6 +437,7 @@ export default {
             }).catch(() => {})
         }
     },
+    //计算属性
     computed:{
         isLogin(){
             return this.$store.getters.isAuthorizated;

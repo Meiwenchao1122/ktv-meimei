@@ -5,6 +5,7 @@
 </template>
 <script>
 import hasLogin from "@/config/isLogin"
+//是否时间到了 要下机
 import hasBad from "@/config/isBadAccount"
 import jwt_decode from "jwt-decode";
 export default {
@@ -22,6 +23,7 @@ export default {
   },
   methods:{
     isLogin(){
+        //初始化登陆后的状态
         if(hasLogin()){
             const decode = jwt_decode(localStorage.userToken);
             this.$store.dispatch("setAuthorizated", true);
@@ -31,12 +33,15 @@ export default {
                 const list = JSON.parse(localStorage.songList);
                 this.$store.dispatch("setAllSong", list);
             }else{
+                //将所有歌曲 存在数据当中
                 localStorage.setItem("songList", JSON.stringify([]));
             }
             if(!localStorage.playModle){
+                //播放1  暂停-1
                 localStorage.setItem("playModle", 1);
             }
             if(!localStorage.currentSong){
+                //当前播放
                 localStorage.setItem("currentSong", JSON.stringify([]));
             }
             if(!localStorage.play){
@@ -44,6 +49,7 @@ export default {
             }
             console.log("已登录")
         }
+        // 定时检测是否到下机时间
         setInterval(() => {
             if(hasLogin()){
                 hasBad();
